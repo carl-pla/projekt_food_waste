@@ -1,7 +1,9 @@
 # projekt_food_waste
+
 Grundlagen Programmierung (1.Semester Projekt)
 
 # Portfolio-Projekt
+
 ## Food Waste Tracker
 
 1. Projektbeschreibung
@@ -10,6 +12,7 @@ telverschwendung im Haushalt zu erstellen.
 Die Anwendung soll folgende Funktionalit¨ aten unterst¨ utzen.
 
 ### Hauptprogramm (40 %)
+
 • Es sollen weggeworfene Lebensmittel dokumentiert werden k¨ onnen. Hierzu sollen
 folgende Daten erfasst werden:
 – Datum,
@@ -31,10 +34,12 @@ Um ein Datum in Python entsprechend verarbeiten zu k¨ onnen, k¨ onnte das Modu
 datetime hilfreich sein (welches selbstverst¨ andlich verwendet werden darf).
 
 ### Testprogramm (10 %)
+
 Schreiben Sie ein Testprogramm zu dem Hauptprogramm.
 
 
 ### 2.Formales
+
 Weitere Packages d¨ urfen nur mit Zustimmung verwendet werden.
 Bewertungskriterien:
 • Sinnvolles Command Line Interface (CLI) zur User-Interaktion.
@@ -45,9 +50,8 @@ Bewertungskriterien:
 • Testprogramm: Vern¨ unftige Code Coverage.
 
 ### Erinnerung
+
 50% des Portfolios werden durch das Pr¨ ufungsgespr¨ ach am 8.12.2025 bzw. 9.12.2025
 abgedeckt. Im Pr¨ ufungsgespr¨ ach werden Fragen zum Projekt gestellt, es sind aber auch
 Fragen zu weiteren Themen der Vorlesung m¨ oglich, die im Projekt m¨ oglicherweise keine
 Rolle gespielt haben.
-
-2
