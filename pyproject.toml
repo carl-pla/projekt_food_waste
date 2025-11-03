@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "food-waste-tracker"
+version = "0.1.0"
+description = "CLI to track household food waste with analytics"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Julian & GPT-5 Thinking"}]
+license = {text = "MIT"}
+keywords = ["food", "waste", "tracker", "cli", "analytics"]
+
+[project.scripts]
+food-waste-tracker = "food_waste_tracker.cli:MAIN"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["food_waste_tracker*"]
