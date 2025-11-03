@@ -36,12 +36,18 @@ Schreiben Sie ein Testprogramm zu dem Hauptprogramm.
 ### 2.Formales
 Weitere Packages dürfen nur mit Zustimmung verwendet werden.
 Bewertungskriterien:
+
 • Sinnvolles Command Line Interface (CLI) zur User-Interaktion.
+
 • Funktionale Korrektheit.
+
 • Keine Laufzeitfehler.
+
 • Strukturierung des Codes.
+
 • Bezeichnungen von Variablen und Funktionen.
-• Testprogramm: Vern¨ unftige Code Coverage.
+
+• Testprogramm: Vernünftige Code Coverage.
 
 ### Erinnerung
 50% des Portfolios werden durch das Prüfungsgespräch am 8.12.2025 bzw. 9.12.2025
