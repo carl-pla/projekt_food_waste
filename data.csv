@@ -1,0 +1,101 @@
+datum,lebensmittel,waste,grund
+2024-08-31,Wurst,3210,Reste vom Kochen
+2024-07-23,Gurke,1400,Transport beschädigt
+2024-07-29,Kaffee,2910,Reste vom Kochen
+2024-05-31,Paprika,750,falsche Lagerung
+2024-10-09,Saft,3380,Verpackung beschädigt
+2024-02-23,Apfel,1420,Überproduktion
+2024-09-11,Eier,4420,Reste vom Kochen
+2024-01-12,Kartoffel,4640,Reste vom Kochen
+2024-09-19,Kartoffel,2330,verdorben
+2024-10-03,Mehl,4280,Versehen
+2024-08-04,Saft,1610,Transport beschädigt
+2024-08-19,Saft,3320,Versehen
+2024-05-17,Karotte,2340,Verpackung beschädigt
+2024-08-10,Milch,2840,falsche Lagerung
+2024-05-22,Tee,140,verdorben
+2024-01-16,Reis,1770,Überproduktion
+2024-07-16,Butter,3240,verdorben
+2024-08-07,Eier,3600,abgelaufen
+2024-09-03,Sahne,4530,Überproduktion
+2024-04-17,Zucker,4900,verdorben
+2024-06-05,Joghurt,2390,verdorben
+2024-06-25,Banane,2100,Transport beschädigt
+2024-06-28,Wurst,1350,Transport beschädigt
+2024-08-15,Käse,2790,falsche Temperatur
+2024-05-21,Reis,4110,Reste vom Kochen
+2024-06-11,Kaffee,1950,Transport beschädigt
+2024-06-19,Gurke,970,Versehen
+2024-06-23,Öl,1890,Reste vom Kochen
+2024-08-08,Karotte,160,Transport beschädigt
+2024-07-27,Öl,4180,abgelaufen
+2024-01-12,Milch,2300,Transport beschädigt
+2024-09-03,Salat,2240,verdorben
+2024-06-15,Tomate,3490,Versehen
+2024-05-12,Eier,4110,Überproduktion
+2024-07-06,Nudeln,2680,Reste vom Kochen
+2024-01-18,Kartoffel,3850,verdorben
+2024-09-18,Fleisch,1580,falsche Lagerung
+2024-10-05,Fisch,900,Transport beschädigt
+2024-04-22,Paprika,4990,verdorben
+2024-06-14,Salat,4510,falsche Temperatur
+2024-10-16,Reis,4010,Verpackung beschädigt
+2024-01-02,Tomate,4640,nicht verkauft
+2024-04-10,Tee,4670,nicht verkauft
+2024-03-16,Fleisch,1980,abgelaufen
+2024-09-30,Saft,3940,Versehen
+2024-09-22,Fisch,2610,Verpackung beschädigt
+2024-07-04,Eier,1770,Überproduktion
+2024-10-01,Käse,3490,Überproduktion
+2024-04-08,Zwiebel,2680,Transport beschädigt
+2024-05-21,Käse,2740,Reste vom Kochen
+2024-02-05,Tee,1290,falsche Lagerung
+2024-10-22,Wurst,1980,falsche Lagerung
+2024-03-15,Kaffee,1030,Überproduktion
+2024-04-13,Apfel,4570,verdorben
+2024-07-08,Milch,4280,Reste vom Kochen
+2024-03-14,Banane,3820,Reste vom Kochen
+2024-01-26,Zucker,2700,verdorben
+2024-08-20,Käse,1350,verdorben
+2024-01-20,Zucker,570,falsche Lagerung
+2024-05-31,Joghurt,3160,abgelaufen
+2024-02-09,Öl,4880,Reste vom Kochen
+2024-06-19,Eier,2090,Verpackung beschädigt
+2024-04-21,Joghurt,4990,verdorben
+2024-06-03,Zwiebel,4300,nicht verkauft
+2024-10-12,Wurst,3190,Überproduktion
+2024-06-17,Sahne,2690,verdorben
+2024-06-28,Zucker,3850,Versehen
+2024-07-12,Gurke,1850,nicht verkauft
+2024-04-04,Milch,2530,Überproduktion
+2024-02-09,Zwiebel,2070,Reste vom Kochen
+2024-07-13,Fisch,330,verdorben
+2024-09-18,Sahne,1720,Reste vom Kochen
+2024-01-22,Nudeln,1470,nicht verkauft
+2024-01-30,Wurst,680,falsche Temperatur
+2024-01-18,Tomate,3080,falsche Temperatur
+2024-06-02,Reis,420,Überproduktion
+2024-07-23,Joghurt,2800,Versehen
+2024-07-16,Paprika,1900,Überproduktion
+2024-07-09,Fisch,1650,Transport beschädigt
+2024-07-28,Joghurt,2020,Versehen
+2024-01-07,Tomate,4780,nicht verkauft
+2024-04-29,Tee,4020,Überproduktion
+2024-01-11,Mehl,3940,Überproduktion
+2024-07-10,Gurke,2170,Versehen
+2024-08-31,Reis,1960,verdorben
+2024-06-14,Saft,1520,Transport beschädigt
+2024-01-05,Salat,2880,falsche Temperatur
+2024-05-26,Wurst,750,Versehen
+2024-06-13,Kartoffel,3040,nicht verkauft
+2024-07-08,Eier,110,Reste vom Kochen
+2024-02-19,Eier,4230,Reste vom Kochen
+2024-02-11,Wurst,4970,Transport beschädigt
+2024-10-23,Brot,2380,verdorben
+2024-03-31,Kaffee,4480,Transport beschädigt
+2024-03-31,Wasser,4470,Überproduktion
+2024-10-23,Karotte,1330,Verpackung beschädigt
+2024-10-13,Apfel,470,abgelaufen
+2024-07-31,Mehl,3060,falsche Lagerung
+2024-07-27,Käse,1360,Reste vom Kochen
+2024-07-08,Kaffee,1690,abgelaufen
