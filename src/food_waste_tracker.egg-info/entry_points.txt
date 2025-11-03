@@ -1,0 +1,2 @@
+[console_scripts]
+food-waste-tracker = food_waste_tracker.cli:MAIN

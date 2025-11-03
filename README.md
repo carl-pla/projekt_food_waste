@@ -1,62 +1,47 @@
-# projekt_food_waste
+# Food Waste Tracker
 
-Grundlagen Programmierung (1.Semester Projekt)
+Ein performantes CLI-Tool, um Lebensmittelverschwendung zu protokollieren und auszuwerten – mit **JSONL**/**CSV**-Persistenz, robusten Datumsparsern und integrierten Analytics.
 
-# Portfolio-Projekt
+## Features
+- `add`, `list`, `total`, `top3`, `period`, `common-reason`
+- JSONL (default) oder CSV Speicherung
+- Sichere, atomare Schreibvorgänge
+- Tests via `unittest`
 
-## Food Waste Tracker
+## Installation (Editable)
+```bash
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -e .
+```
 
-1. Projektbeschreibung
-Das Ziel dieses Projekts ist es, eine Anwendung zur Dokumentation von Lebensmit-
-telverschwendung im Haushalt zu erstellen.
-Die Anwendung soll folgende Funktionalitäten unterstützen.
+## Nutzung
+```bash
+# Eintrag hinzufügen (heute)
+food-waste-tracker add --item "Brot" --grams 120 --reason "verdorben"
 
-### Hauptprogramm (40 %)
+# Mit Datum
+food-waste-tracker add --date 03.11.2025 --item "Milch" --grams 500 --reason "MHD abgelaufen"
 
-• Es sollen weggeworfene Lebensmittel dokumentiert werden können. Hierzu sollen
-folgende Daten erfasst werden:
-– Datum,
-– Lebensmittel (z.B. Brot, Trauben,...),
-– weggeworfene Menge des angegebenen Lebensmittels in Gramm,
-– Grund (verdorben, MHD abgelaufen, zu viel gekocht).
+# Gesamtsumme
+food-waste-tracker total
 
-• Die Daten sollen in einer Datei gespeichert werden können und aus einer Datei
-gelesen werden können.
+# Top 3 Artikel
+food-waste-tracker top3
 
-• Das Programm soll folgende Auswertungen ermöglichen:
-– Gesamte Menge an weggeworfenen Lebensmitteln anzeigen.
-– Die drei Lebensmittel mit der größten weggeworfenen Menge auflisten.
-– Menge an weggeworfenen Lebensmittel in bestimmtem Zeitraum ausgeben.
-– Den häufigsten Grund für das Wegwerfen ausgeben.
+# Zeitraum (inklusive)
+food-waste-tracker period --start 2025-10-01 --end 2025-10-31
 
-Um ein Datum in Python entsprechend verarbeiten zu können, könnte das Modul
-datetime hilfreich sein (welches selbstverständlich verwendet werden darf).
+# Häufigster Grund
+food-waste-tracker common-reason
+```
 
-### Testprogramm (10 %)
+> Standardpfad der Datenbank: `~/.food_waste/data.jsonl`.  
+> Alternativ: Umgebungsvariable `FOOD_WASTE_TRACKER_PATH` setzen oder `--db` verwenden.
 
-Schreiben Sie ein Testprogramm zu dem Hauptprogramm.
+## Tests
+```bash
+python -m unittest
+```
 
-
-### 2.Formales
-
-Weitere Packages dürfen nur mit Zustimmung verwendet werden.
-Bewertungskriterien:
-
-• Sinnvolles Command Line Interface (CLI) zur User-Interaktion.
-
-• Funktionale Korrektheit.
-
-• Keine Laufzeitfehler.
-
-• Strukturierung des Codes.
-
-• Bezeichnungen von Variablen und Funktionen.
-
-• Testprogramm: Vernünftige Code Coverage.
-
-### Erinnerung
-
-50% des Portfolios werden durch das Prüfungsgespräch am 8.12.2025 bzw. 9.12.2025
-abgedeckt. Im Prüfungsgespräch werden Fragen zum Projekt gestellt, es sind aber auch
-Fragen zu weiteren Themen der Vorlesung möglich, die im Projekt möglicherweise keine
-Rolle gespielt haben.
+## Lizenz
+MIT

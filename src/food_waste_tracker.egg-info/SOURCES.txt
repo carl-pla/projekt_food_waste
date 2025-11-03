@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/food_waste_tracker/__init__.py
+src/food_waste_tracker/__main__.py
+src/food_waste_tracker/analytics.py
+src/food_waste_tracker/cli.py
+src/food_waste_tracker/models.py
+src/food_waste_tracker/storage.py
+src/food_waste_tracker/utils.py
+src/food_waste_tracker.egg-info/PKG-INFO
+src/food_waste_tracker.egg-info/SOURCES.txt
+src/food_waste_tracker.egg-info/dependency_links.txt
+src/food_waste_tracker.egg-info/entry_points.txt
+src/food_waste_tracker.egg-info/top_level.txt
+tests/test_tracker.py
