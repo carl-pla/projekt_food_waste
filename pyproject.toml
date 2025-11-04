@@ -8,7 +8,14 @@ version = "0.1.0"
 description = "CLI to track household food waste with analytics"
 readme = "README.md"
 requires-python = ">=3.9"
-authors = [{name = "Julian & GPT-5 Thinking"}]
+authors = [
+  { name = "Julian Krupp" },
+  { name = "Carl" },
+  { name = "Nils" },
+  { name = "Nikita" },
+  { name = "Clemens" }
+]
+
 license = {text = "MIT"}
 keywords = ["food", "waste", "tracker", "cli", "analytics"]
 

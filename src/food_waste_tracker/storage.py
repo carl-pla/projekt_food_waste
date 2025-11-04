@@ -6,8 +6,7 @@ from pathlib import Path
 from typing import Iterable, List
 from .models import ENTRY
 
-# STORAGE HANDLES DURABLE PERSISTENCE OF ENTRIES.
-# SUPPORTED FORMATS: JSONL (DEFAULT) AND CSV.
+# Die Datei speichert und liest Einträge in verschiedenen Formaten (JSONL und CSV).
 
 class STORAGE:
     def __init__(SELF, PATH_STR: str | None = None, FORMAT: str = "JSONL") -> None:
@@ -17,44 +16,49 @@ class STORAGE:
             - IF NONE, USES DEFAULT UNDER USER HOME: ~/.food_waste/data.jsonl
         FORMAT:
             - "JSONL" OR "CSV" (CASE-INSENSITIVE).
+        PATH_STR:
+            - Dateipfad, an dem die Daten gespeichert sind
+            - Wenn keiner angegeben ist, wird der Standardpfad unter dem Benutzerverzeichnis verwendet: ~/.food_waste/data.jsonl
+        FORMAT:
+            - "JSONL" oder "CSV" (gross-/kleinschreibung unabhängig).
         """
         HOME = Path.home()
         DEFAULT_DIR = HOME / ".food_waste"
-        DEFAULT_DIR.mkdir(parents=True, exist_ok=True)
+        DEFAULT_DIR.mkdir(parents=True, exist_ok=True)  # Die Zeile stellt sicher, dass das Verzeichnis existiert, falls nicht, wird es erstellt.
         DEFAULT_FILE = DEFAULT_DIR / "data.jsonl"
-        SELF.PATH = Path(PATH_STR).expanduser() if PATH_STR else DEFAULT_FILE
+        SELF.PATH = Path(PATH_STR).expanduser() if PATH_STR else DEFAULT_FILE   # expanduser() ersetzt ~ durch das Benutzerverzeichnis
         SELF.FORMAT = FORMAT.upper()
         if SELF.FORMAT not in {"JSONL", "CSV"}:
             raise ValueError("FORMAT MUST BE 'JSONL' OR 'CSV'")
-        # ENSURE DIRECTORY EXISTS
+        # Prüftt, ob das Verzeichnis existiert, und erstellt es bei Bedarf
         SELF.PATH.parent.mkdir(parents=True, exist_ok=True)
-        # ENSURE FILE EXISTS
+        # Prüft, ob die Datei existiert, und erstellt sie bei Bedarf mit dem richtigen Header
         if not SELF.PATH.exists():
             if SELF.FORMAT == "JSONL":
-                SELF.PATH.touch()
+                SELF.PATH.touch()   # Erstellt eine leere Datei
             else:
-                with SELF.PATH.open("w", newline="", encoding="utf-8") as F:
+                with SELF.PATH.open("w", newline="", encoding="utf-8") as F:    # newline="" verhindert zusätzliche Leerzeilen in Windows
                     WRITER = csv.DictWriter(F, fieldnames=["ID", "DATE", "ITEM", "GRAMS", "REASON"])
                     WRITER.writeheader()
 
     def APPEND(SELF, ENTRY_OBJ: ENTRY) -> None:
         """
-        APPEND A SINGLE ENTRY TO STORAGE.
+        Fügt einen einzelnen Eintrag zum Speicher hinzu.
         """
         if SELF.FORMAT == "JSONL":
-            with SELF.PATH.open("a", encoding="utf-8") as F:
+            with SELF.PATH.open("a", encoding="utf-8") as F:    # mode "a" steht für append (anhängen)
                 F.write(json.dumps(ENTRY_OBJ.TO_DICT(), ensure_ascii=False) + "\n")
         else:
-            FILE_EXISTS = SELF.PATH.exists() and SELF.PATH.stat().st_size > 0
+            FILE_EXISTS = SELF.PATH.exists() and SELF.PATH.stat().st_size > 0   # Prüft, ob die Datei existiert und nicht leer ist
             with SELF.PATH.open("a", newline="", encoding="utf-8") as F:
                 WRITER = csv.DictWriter(F, fieldnames=["ID", "DATE", "ITEM", "GRAMS", "REASON"])
                 if not FILE_EXISTS:
-                    WRITER.writeheader()
-                WRITER.writerow(ENTRY_OBJ.TO_DICT())
+                    WRITER.writeheader()    # Schreibt den Header (WRITER), wenn die Datei neu ist
+                WRITER.writerow(ENTRY_OBJ.TO_DICT())    # writerow schreibt eine einzelne Zeile in die CSV-Datei
 
     def SAVE_ALL(SELF, ENTRIES: Iterable[ENTRY]) -> None:
         """
-        ATOMICALLY REWRITE THE ENTIRE DATASET.
+        Schreibt den gesamten Datensatz atomar neu, um Datenverlust zu vermeiden, weil APPEND nicht für alle Einträge geeignet ist.
         """
         TMP_PATH = SELF.PATH.with_suffix(SELF.PATH.suffix + ".tmp")
         if SELF.FORMAT == "JSONL":
@@ -71,7 +75,7 @@ class STORAGE:
 
     def READ_ALL(SELF) -> List[ENTRY]:
         """
-        READ ALL ENTRIES FROM STORAGE.
+        Liest alle Einträge aus dem Speicher.
         """
         RESULT: List[ENTRY] = []
         if not SELF.PATH.exists():

@@ -1,112 +1,176 @@
+# Testdatei ohne unittest/pytest (no unittest/pytest)
 from __future__ import annotations
-import os
-import tempfile
-import unittest
+import os, tempfile, io, sys
 from datetime import date
 from typing import List
-from food_waste_tracker.models import ENTRY
-from food_waste_tracker.storage import STORAGE
-from food_waste_tracker.analytics import TOTAL_WASTE, TOP_THREE_ITEMS, WASTE_IN_PERIOD, MOST_COMMON_REASON
-from food_waste_tracker.cli import BUILD_PARSER, RUN_FROM_ARGS
 
-class TEST_FOOD_WASTE_TRACKER(unittest.TestCase):
-    """
-    COMPREHENSIVE UNIT TESTS COVERING STORAGE, ANALYTICS, AND CLI BEHAVIOR.
-    """
+# Testet, ob das Paket installiert ist; wenn nicht, fügt es ./src zu sys.path hinzu
+try:
+    from food_waste_tracker.models import ENTRY
+    from food_waste_tracker.storage import STORAGE
+    from food_waste_tracker.analytics import TOTAL_WASTE, TOP_THREE_ITEMS, WASTE_IN_PERIOD, MOST_COMMON_REASON
+    from food_waste_tracker.cli import BUILD_PARSER, RUN_FROM_ARGS
+except ImportError:
+    import pathlib
+    sys.path.insert(0, str((pathlib.Path(__file__).resolve().parent / "src").resolve()))
+    from food_waste_tracker.models import ENTRY
+    from food_waste_tracker.storage import STORAGE
+    from food_waste_tracker.analytics import TOTAL_WASTE, TOP_THREE_ITEMS, WASTE_IN_PERIOD, MOST_COMMON_REASON
+    from food_waste_tracker.cli import BUILD_PARSER, RUN_FROM_ARGS
 
-    def setUp(SELF) -> None:  # noqa: N802
-        SELF.TMP = tempfile.NamedTemporaryFile(delete=False)
-        SELF.TMP.close()
-        SELF.DB_PATH = SELF.TMP.name
-        # DEFAULT FORMAT JSONL
-        SELF.STORE = STORAGE(SELF.DB_PATH, "JSONL")
+class TempDB:   # Hilfsklasse für temporäre Datenbanken in Tests
+    def __init__(self, fmt: str = "JSONL"):
+        self.tmp = tempfile.NamedTemporaryFile(delete=False)    # Erstelle eine temporäre Datei, die nicht automatisch gelöscht wird
+        self.tmp.close()    # Schließe die Datei, damit STORAGE sie öffnen kann
+        self.db_path = self.tmp.name
+        self.store = STORAGE(self.db_path, fmt)
 
-    def tearDown(SELF) -> None:  # noqa: N802
+    def cleanup(self) -> None:
         try:
-            os.remove(SELF.DB_PATH)
+            os.remove(self.db_path)
         except FileNotFoundError:
             pass
 
-    def _SEED(SELF) -> List[ENTRY]:
-        E1 = ENTRY.CREATE(ITEM="BROT", GRAMS=120, REASON="VERDORBEN", DATE_STR="2025-10-01")
-        E2 = ENTRY.CREATE(ITEM="TRAUBEN", GRAMS=200, REASON="ZU VIEL GEKOCHT", DATE_STR="2025-10-02")
-        E3 = ENTRY.CREATE(ITEM="BROT", GRAMS=80, REASON="MHD ABGELAUFEN", DATE_STR="2025-10-03")
-        E4 = ENTRY.CREATE(ITEM="MILCH", GRAMS=500, REASON="VERDORBEN", DATE_STR="2025-10-04")
-        for E in [E1, E2, E3, E4]:
-            SELF.STORE.APPEND(E)
-        return [E1, E2, E3, E4]
+def seed(store: STORAGE):   # Füllt den Speicher mit Beispiel-Einträgen
+    e1 = ENTRY.CREATE(ITEM="BROT", GRAMS=120, REASON="VERDORBEN", DATE_STR="2025-10-01")
+    e2 = ENTRY.CREATE(ITEM="TRAUBEN", GRAMS=200, REASON="ZU VIEL GEKOCHT", DATE_STR="2025-10-02")
+    e3 = ENTRY.CREATE(ITEM="BROT", GRAMS=80, REASON="MHD ABGELAUFEN", DATE_STR="2025-10-03")
+    e4 = ENTRY.CREATE(ITEM="MILCH", GRAMS=500, REASON="VERDORBEN", DATE_STR="2025-10-04")
+    for e in (e1, e2, e3, e4):
+        store.APPEND(e)
+    return [e1, e2, e3, e4]
 
-    def test_storage_roundtrip(SELF) -> None:
-        ENTRIES = SELF._SEED()
-        LOADED = SELF.STORE.READ_ALL()
-        SELF.assertEqual(len(LOADED), len(ENTRIES))
-        # ENSURE STABLE FIELDS
-        SELF.assertEqual(sorted([E.ITEM for E in LOADED]), sorted([E.ITEM for E in ENTRIES]))
+def run_test(name: str, fn):
+    try:
+        fn()
+        print(f"[PASS] {name}")
+        return True
+    except AssertionError as e:
+        print(f"[FAIL] {name}: {e}")
+        return False
+    except Exception as e:
+        print(f"[ERROR] {name}: {type(e).__name__}: {e}")
+        return False
 
-    def test_analytics_total(SELF) -> None:
-        ENTRIES = SELF._SEED()
-        SELF.assertEqual(TOTAL_WASTE(ENTRIES), 120 + 200 + 80 + 500)
+def test_storage_roundtrip():
+    t = TempDB("JSONL")
+    try:
+        entries = seed(t.store)
+        loaded = t.store.READ_ALL()
+        assert len(loaded) == len(entries), "Loaded entries count mismatch"
+        assert sorted([e.ITEM for e in loaded]) == sorted([e.ITEM for e in entries]), "Items mismatch"
+    finally:
+        t.cleanup()
 
-    def test_analytics_top3(SELF) -> None:
-        ENTRIES = SELF._SEED()
-        TOP = TOP_THREE_ITEMS(ENTRIES)
-        # EXPECT MILCH FIRST (500), THEN BROT (200), THEN TRAUBEN (200)
-        SELF.assertEqual(TOP[0][0], "MILCH")
-        # BROT TOTAL = 200
-        SUM_BROT = [T for T in TOP if T[0] == "BROT"][0][1]
-        SELF.assertEqual(SUM_BROT, 200)
+def test_analytics_total():
+    t = TempDB("JSONL")
+    try:
+        entries = seed(t.store)
+        assert TOTAL_WASTE(entries) == 120 + 200 + 80 + 500, "Total waste incorrect"
+    finally:
+        t.cleanup()
 
-    def test_analytics_period(SELF) -> None:
-        ENTRIES = SELF._SEED()
-        T = WASTE_IN_PERIOD(ENTRIES, date(2025, 10, 2), date(2025, 10, 3))
-        SELF.assertEqual(T, 200 + 80)
+def test_analytics_top3():
+    t = TempDB("JSONL")
+    try:
+        entries = seed(t.store)
+        top = TOP_THREE_ITEMS(entries)
+        assert top[0][0] == "MILCH", "Top #1 item should be MILCH"
+        sum_brot = [T for T in top if T[0] == "BROT"][0][1]
+        assert sum_brot == 200, "Aggregated BROT grams should be 200"
+    finally:
+        t.cleanup()
 
-    def test_analytics_common_reason(SELF) -> None:
-        ENTRIES = SELF._SEED()
-        R = MOST_COMMON_REASON(ENTRIES)
-        SELF.assertEqual(R, "VERDORBEN")
+def test_analytics_period():
+    t = TempDB("JSONL")
+    try:
+        entries = seed(t.store)
+        total = WASTE_IN_PERIOD(entries, date(2025,10,2), date(2025,10,3))
+        assert total == 200 + 80, "Period total incorrect"
+    finally:
+        t.cleanup()
 
-    def test_cli_add_and_total(SELF) -> None:
-        # ADD ENTRY VIA CLI
-        PARSER = BUILD_PARSER()
-        ARGS = PARSER.parse_args(
-            ["--db", SELF.DB_PATH, "--format", "JSONL", "add", "--date", "2025-10-05", "--item", "JOGHURT", "--grams", "150", "--reason", "MHD ABGELAUFEN"]
-        )
-        CODE = RUN_FROM_ARGS(ARGS)
-        SELF.assertEqual(CODE, 0)
-        # CHECK TOTAL > 0
-        PARSER2 = BUILD_PARSER()
-        ARGS2 = PARSER2.parse_args(["--db", SELF.DB_PATH, "--format", "JSONL", "total"])
-        # CAPTURE PRINTED OUTPUT BY TEMPORARY REDIRECTION
-        import io
-        import sys
+def test_analytics_common_reason():
+    t = TempDB("JSONL")
+    try:
+        entries = seed(t.store)
+        r = MOST_COMMON_REASON(entries)
+        assert r == "VERDORBEN", "Most common reason should be VERDORBEN"
+    finally:
+        t.cleanup()
 
-        BUF = io.StringIO()
-        OLD = sys.stdout
+def test_cli_add_and_total():
+    t = TempDB("JSONL")
+    try:
+        parser = BUILD_PARSER()
+        args = parser.parse_args(["--db", t.db_path, "--format", "JSONL",
+                                  "add", "--date", "2025-10-05", "--item", "JOGHURT",
+                                  "--grams", "150", "--reason", "MHD ABGELAUFEN"])
+        code = RUN_FROM_ARGS(args)
+        assert code == 0, "CLI add returned non-zero"
+
+        parser2 = BUILD_PARSER()
+        args2 = parser2.parse_args(["--db", t.db_path, "--format", "JSONL", "total"])
+        buf = io.StringIO()
+        old = sys.stdout
         try:
-            sys.stdout = BUF
-            CODE2 = RUN_FROM_ARGS(ARGS2)
+            sys.stdout = buf
+            code2 = RUN_FROM_ARGS(args2)
         finally:
-            sys.stdout = OLD
-        SELF.assertEqual(CODE2, 0)
-        OUT = BUF.getvalue()
-        SELF.assertIn("TOTAL WASTE:", OUT)
+            sys.stdout = old
+        assert code2 == 0, "CLI total returned non-zero"
+        out = buf.getvalue()
+        assert "TOTAL WASTE:" in out, "CLI total did not print expected text"
+    finally:
+        t.cleanup()
 
-    def test_cli_period_validation(SELF) -> None:
-        # INVALID PERIOD (END < START) SHOULD RAISE
-        PARSER = BUILD_PARSER()
-        ARGS = PARSER.parse_args(["--db", SELF.DB_PATH, "--format", "JSONL", "period", "--start", "2025-10-05", "--end", "2025-10-01"])
-        with SELF.assertRaises(ValueError):
-            RUN_FROM_ARGS(ARGS)
+def test_cli_period_validation():
+    t = TempDB("JSONL")
+    try:
+        parser = BUILD_PARSER()
+        args = parser.parse_args(["--db", t.db_path, "--format", "JSONL",
+                                  "period", "--start", "2025-10-05", "--end", "2025-10-01"])
+        # Expect ValueError because end < start
+        try:
+            RUN_FROM_ARGS(args)
+        except ValueError:
+            pass
+        else:
+            assert False, "Expected ValueError for invalid period"
+    finally:
+        t.cleanup()
 
-    def test_csv_storage(SELF) -> None:
-        # RE-INIT STORE AS CSV ON SAME PATH (OVERWRITE)
-        SELF.STORE = STORAGE(SELF.DB_PATH, "CSV")
-        E = ENTRY.CREATE(ITEM="KÄSE", GRAMS=50, REASON="RESTE", DATE_STR="2025-10-06")
-        SELF.STORE.APPEND(E)
-        LOADED = SELF.STORE.READ_ALL()
-        SELF.assertEqual(len(LOADED), 1)
-        SELF.assertEqual(LOADED[0].ITEM, "KÄSE")
+def test_csv_storage():
+    t = TempDB("CSV")
+    try:
+        e = ENTRY.CREATE(ITEM="KÄSE", GRAMS=50, REASON="RESTE", DATE_STR="2025-10-06")
+        t.store.APPEND(e)
+        loaded = t.store.READ_ALL()
+        assert len(loaded) == 1, "CSV load count incorrect"
+        assert loaded[0].ITEM == "KÄSE", "CSV item mismatch"
+    finally:
+        t.cleanup()
+
+def main():
+    tests = [
+        ("storage_roundtrip", test_storage_roundtrip),
+        ("analytics_total", test_analytics_total),
+        ("analytics_top3", test_analytics_top3),
+        ("analytics_period", test_analytics_period),
+        ("analytics_common_reason", test_analytics_common_reason),
+        ("cli_add_and_total", test_cli_add_and_total),
+        ("cli_period_validation", test_cli_period_validation),
+        ("csv_storage", test_csv_storage),
+    ]
+    passed = 0
+    for name, fn in tests:
+        ok = run_test(name, fn)
+        if ok:
+            passed += 1
+    total = len(tests)
+    print(f"\n{passed}/{total} tests passed")
+    if passed != total:
+        sys.exit(1)
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

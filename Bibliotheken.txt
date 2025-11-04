@@ -1,0 +1,97 @@
+__future__.annotations
+dataclasses
+datetime
+typing
+uuid
+csv
+json
+os
+pathlib
+collections
+argparse
+tempfile
+unittest
+io
+sys
+subprocess
+
+
+__future__ (annotations)
+Allgemein: Schaltet zukünftiges Sprach-Feature ein (verzögerte Auswertung von Typannotationen).
+Im Projekt: Erlaubt Forward-References ohne Quotes und reduziert Import-Zyklen.
+APIs: from __future__ import annotations.
+
+dataclasses
+Allgemein: Boilerplate-freie Klassen mit Auto-__init__, __repr__, __eq__.
+Im Projekt: ENTRY als unveränderliches Datenobjekt (frozen=True).
+APIs: @dataclass.
+
+datetime
+Allgemein: Datum/Zeit-Objekte, Parsing/Formatierung.
+Im Projekt: Speichert Eintragsdatum, parsed Datumsstrings, Perioden-Filter.
+APIs: date, datetime.strptime, date.today, isoformat.
+
+typing
+Allgemein: Typannotationen (z. B. List, Dict, Optional, Iterable).
+Im Projekt: Klare Signaturen für Modelle, Storage und Analytics.
+APIs: Dict, Any, Iterable, List, Tuple, Optional.
+
+uuid
+Allgemein: Eindeutige IDs erzeugen.
+Im Projekt: ENTRY.ID via uuid4() für Nachvollziehbarkeit.
+APIs: uuid4.
+
+csv
+Allgemein: CSV lesen/schreiben.
+Im Projekt: Optionales Speicherformat neben JSONL.
+APIs: csv.DictWriter, csv.DictReader.
+
+json
+Allgemein: JSON serialisieren/deserialisieren.
+Im Projekt: JSONL-Persistenz je Zeile, fester UTF-8-Flow.
+APIs: json.dumps, json.loads.
+
+os
+Allgemein: Betriebssystem-Funktionen (Pfad/Env/Dateioperationen).
+Im Projekt: Atomare Ersetzung (os.replace), ENV-Pfad, Existenzchecks.
+APIs: os.replace, os.getenv.
+
+pathlib
+Allgemein: Objektorientiertes Pfad-Handling.
+Im Projekt: Standard-Datenpfad ~/.food_waste/…, Dateierzeugung.
+APIs: Path.home, Path.mkdir, Path.open, Path.exists.
+
+collections
+Allgemein: Nützliche Container-Typen.
+Im Projekt: defaultdict(int) für Summen; Counter für häufigste Gründe.
+APIs: defaultdict, Counter.
+
+argparse
+Allgemein: CLI-Parser für Befehle/Optionen/Unterkommandos.
+Im Projekt: Subcommands add, list, total, top3, period, common-reason.
+APIs: ArgumentParser, add_subparsers, add_argument.
+
+tempfile
+Allgemein: Temporäre Dateien/Verzeichnisse für Tests/Sandboxing.
+Im Projekt: Tests legen temporäre DB-Dateien an.
+APIs: NamedTemporaryFile.
+
+unittest
+Allgemein: Standard-Testframework.
+Im Projekt: End-to-End- und Modul-Tests (Storage, Analytics, CLI).
+APIs: unittest.TestCase, assertEqual, assertRaises.
+
+io
+Allgemein: Streams (z. B. In-Memory Buffers).
+Im Projekt: StringIO zum Abfangen von CLI-Ausgaben in Tests.
+APIs: io.StringIO.
+
+sys
+Allgemein: Python-Interpreter-Schnittstellen.
+Im Projekt: sys.stdout-Umschaltung in Tests; sys.executable im Demo-Script; Exit-Code.
+APIs: sys.stdout, sys.executable.
+
+subprocess
+Allgemein: Externe Prozesse starten.
+Im Projekt: Demo-Script ruft das Modul-CLI über den aktuellen Interpreter auf.
+APIs: subprocess.run.
