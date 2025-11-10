@@ -17,8 +17,9 @@ class Store:
             open(self.path, "a", encoding="utf-8").close()
 
     def append(self, entry: Entry):
-        with open(self.path, "a", encoding="utf-8") as f:
-            f.write(json.dumps(entry.to_dict(), ensure_ascii=False) + "\n")
+        with open(self.path, "a", encoding="utf-8") as f:   # Schreibt appended, also am Ende der Datei
+            f.write(json.dumps(entry.to_dict(), ensure_ascii=False) + "\n")     # dumps wandelt dict in json-String um
+            # Schreibt in die Datei ein dump für den übergebenen Entry-Eintrag mit utf-8 und fügt einen Zeilenumbruch ein
 
     def read_all(self):
         res = []
@@ -29,7 +30,7 @@ class Store:
                 s = line.strip()
                 if not s:
                     continue
-                d = json.loads(s)
+                d = json.loads(s)   # Lädt die Zeile als json aus einem string (loads = load string)
                 res.append(Entry.from_dict(d))
         return res
 
@@ -38,4 +39,4 @@ class Store:
         with open(tmp, "w", encoding="utf-8") as f:
             for e in entries:
                 f.write(json.dumps(e.to_dict(), ensure_ascii=False) + "\n")
-        os.replace(tmp, self.path)
+        os.replace(tmp, self.path)      # (src, dst)
