@@ -8,8 +8,7 @@ csv.datei wird nicht in spezieller Methode aufgerufen, da sonst zwei Methoden ko
 
 Programm kann in verschiedene Dateien sortiert werden, dass es übersichtlicher bleibt
 
-"""
-                
+"""          
                        
 """
 -CLI-Handling (Inputs,prints)
