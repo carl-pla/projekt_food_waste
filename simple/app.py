@@ -5,7 +5,7 @@ from models import new_entry
 from storage import Store, DEFAULT_DB_PATH
 from analytics import Analytics
 from importer import CsvImporter
-from utils import parse_date_or_today  # falls noch genutzt
+from utils import parse_date_or_today
 
 
 class App:
@@ -18,6 +18,8 @@ class App:
         self.importer = CsvImporter()
 
     # ---------------- input helpers -----------------
+    # Verbessern die Codequalität, man muss nicht jeden Input separat prüfen, sondern deckt das hiermit alles ab.
+    # Durch den "_" am Anfang ist die Funktion nur intern aufrufbar.
     def _input_nonempty(self, prompt):
         while True:
             v = input(prompt).strip()
@@ -38,7 +40,7 @@ class App:
                     raise ValueError
                 return n
             except Exception:
-                print("Bitte eine gültige ganze Zahl eingeben%s." % (" (>= 0)" if nonneg else ""))
+                print(f"Bitte eine gültige ganze Zahl eingeben '>=0'")
 
     def _input_date(self, prompt, allow_empty=True):
         while True:
@@ -48,7 +50,7 @@ class App:
             try:
                 return parse_date_or_today(v)
             except Exception as e:
-                print("Ungültiges Datum: %s" % e)
+                print(f"Ungültiges Datum: {e}")
 
     # ---------------- actions -----------------------
     def add_entry(self):
@@ -69,7 +71,7 @@ class App:
         limit = self._input_int("Wieviele Zeilen anzeigen? (0 = alle): ", nonneg=True)
         shown = 0
         for e in entries:
-            print("%s\t%s\t%s\t%dg\t%s" % (e.id, e.date_iso, e.item, e.grams, e.reason))
+            print(f"{e.id}\t{e.date_iso}\t{e.item}\t{e.grams}\t{e.reason}")
             shown += 1
             if limit and shown >= limit:
                 break
@@ -85,18 +87,18 @@ class App:
             print("Keine Einträge.")
             return
         for i, (item, grams) in enumerate(top, start=1):
-            print("%d. %s: %d g" % (i, item, grams))
+            print(f"{i}. {item}: {grams}g")
 
     def show_period(self):
         start = self._input_date("Startdatum: ", allow_empty=False)
         end = self._input_date("Enddatum: ", allow_empty=False)
         entries = self.store.read_all()
-        print("SUMME %s bis %s: %d g" % (start, end, self.analytics.waste_in_period(entries, start, end)))
+        print(f"SUMME {start} bis {end}: {self.analytics.waste_in_period(entries, start, end)}g")
 
     def show_common_reason(self):
         entries = self.store.read_all()
         r = self.analytics.most_common_reason(entries)
-        print("Kein Eintrag vorhanden." if r is None else "HÄUFIGSTER GRUND: %s" % r)
+        print("Kein Eintrag vorhanden." if r is None else f"HÄUFIGSTER GRUND: {r}")
 
     def import_csv(self):
         csvp = self._input_nonempty("CSV-Pfad: ")
@@ -104,7 +106,7 @@ class App:
         print("Zielspalten: DATE, ITEM, GRAMS, REASON, optional ID.")
         mapping = {}
         for tgt in ["DATE","ITEM","GRAMS","REASON","ID"]:
-            src = self._input_optional("CSV-Spaltenname für %s (leer=ignorieren): " % tgt)
+            src = self._input_optional(f"CSV-Spaltenname für {tgt} (leer=ignorieren): ")
             if src:
                 mapping[tgt] = src
         enc = self._input_optional("Encoding (leer = utf-8): ") or "utf-8"
@@ -114,7 +116,7 @@ class App:
         self.importer.delimiter = (delim or None)
 
         stats = self.importer.import_file(csvp, self.store, mapping=mapping or None, dry_run=False)
-        print("Importiert: %d, Übersprungen: %d" % (stats["added"], stats["skipped"]))
+        print(f"Importiert: {stats["added"]}, Übersprungen: {stats["skipped"]}")
         if stats["errors"]:
             print("Fehler (erste 10):")
             for e in stats["errors"][:10]:
