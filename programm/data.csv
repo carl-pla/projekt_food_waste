@@ -37,7 +37,7 @@ datum,lebensmittel,waste,grund
 2024-01-18,Kartoffel,3850,verdorben
 2024-09-18,Fleisch,1580,falsche Lagerung
 2024-10-05,Fisch,900,Transport beschädigt
-2024-04-22,Paprika,4990,verdorben
+2024-04-22,Paprika,4995,verdorben
 2024-06-14,Salat,4510,falsche Temperatur
 2024-10-16,Reis,4010,Verpackung beschädigt
 2024-01-02,Tomate,4640,nicht verkauft
@@ -99,3 +99,4 @@ datum,lebensmittel,waste,grund
 2024-07-31,Mehl,3060,falsche Lagerung
 2024-07-27,Käse,1360,Reste vom Kochen
 2024-07-08,Kaffee,1690,abgelaufen
+2025-11-10,boerek,670,vergessen

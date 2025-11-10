@@ -1,4 +1,5 @@
 from datetime import datetime
+import csv
 
     
 """
@@ -6,10 +7,11 @@ User willl Einträge in die csv-Datei hinzufügen
 """ 
 
 def daten_hinzufuegen():
+    """ 
     try:
         datum = input("Datum (yyyy-mm-dd): ").strip()
         lebensmittel = input("Lebensmittel: ").strip()
-        menge = input("Menge (in Gramm): ").strip()
+        menge = int(input("Menge (in Gramm): "))
         grund = input("Grund: ").strip()
 
         # Eingaben prüfen
@@ -24,13 +26,14 @@ def daten_hinzufuegen():
             return
 
         # In Datei schreiben
-        with open("data.csv", "a") as file:
+    with open("data.csv", "a") as file:
             file.write(f"{datum},{lebensmittel},{menge},{grund}\n")
 
-        print("Eintrag erfolgreich hinzugefügt!")
+    print("Eintrag erfolgreich hinzugefügt!")
+
 
     except FileNotFoundError:
         print("Datei wurde nicht gefunden.")
     except Exception:
         raise Exception
-
+"""

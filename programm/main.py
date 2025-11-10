@@ -1,6 +1,7 @@
 from datetime import datetime
-from Projekt_FoodWaste.programm.create import daten_hinzufuegen
-from Projekt_FoodWaste.programm.analyse import gesamte_verschwendung, lebensmittel_meiste_verschwendung, zeitraum, grund
+from create import daten_hinzufuegen
+from analyse import gesamte_verschwendung, lebensmittel_meiste_verschwendung, zeitraum, grund
+import csv
 
 """
 csv.datei wird nicht in spezieller Methode aufgerufen, da sonst zwei Methoden kollidieren, was es schlecht zum testen  
@@ -19,7 +20,7 @@ Programm kann in verschiedene Dateien sortiert werden, dass es übersichtlicher 
 def main():
     while True:
         welche_aufgabe = input(
-            "Willkommen beim Food Waste Tracker\n"
+            "\nWillkommen beim Food Waste Tracker\n"
             "Möchten Sie Daten auslesen oder hinzufügen? (1/2): "
         )
 
@@ -38,11 +39,13 @@ def main():
             if auswahl not in ["a", "b", "c", "d"]:
                 print("Ungültige Auswahl. Bitte a, b, c oder d eingeben.\n")
             elif auswahl == "a":
-                print(f"Deine Auswahl: {auswahl}\n{gesamte_verschwendung()}")
+                print(f"Deine Auswahl: {auswahl}\n{gesamte_verschwendung()} gramm")
             elif auswahl == "b":
                 print(f"Deine Auswahl: {auswahl}\n{lebensmittel_meiste_verschwendung()}")
             elif auswahl == "c":
-                print(f"Deine Auswahl: {auswahl}\n{zeitraum()}")
+                input_zeitraum_start = input("Geben Sie das Startdatum ein")
+                input_zeitraum_ende = input("Geben Sie das Enddatum ein")
+                print(f"Deine Auswahl: {auswahl}\n{zeitraum(input_zeitraum_start, input_zeitraum_ende)} gramm")
             elif auswahl == "d":
                 print(f"Deine Auswahl: {auswahl}\n{grund()}")
             
@@ -74,8 +77,8 @@ def main():
             # Menge prüfen
             while True:
                 try:
-                    menge_abfrage = input("Menge (in Gramm): ").strip()
-                    if menge_abfrage == float():
+                    menge_abfrage = int(input("Menge (in Gramm): "))
+                    if menge_abfrage % 2 != 0:
                         raise ValueError("Die Menge muss eine gerade Zahl sein")
                     if menge_abfrage <= 0:
                         raise ValueError("Die Menge muss größer als 0 sein.")
@@ -95,7 +98,11 @@ def main():
 
             
             # Zu data.csv hinzufügen 
-            daten_hinzufuegen()
+            with open("data.csv", "a") as file:
+                file.write(f"{datum_abfrage},{lebensmittel_abfrage},{menge_abfrage},{grund_abfrage}\n")
+            
+            print("Eintrag erfolgreich hinzugefügt!")
+
             
             # Ausgabe
             print("\nDaten erfolgreich aufgenommen!")
@@ -110,3 +117,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
