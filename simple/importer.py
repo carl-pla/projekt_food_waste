@@ -1,7 +1,7 @@
+# importer.py
 import os
 import csv
-from uuid import uuid4  # Importiert uuid, um eine eindeutige ID zu erzeugen
-from models import Entry
+from models import new_entry
 from utils import parse_date_or_today, parse_int_nonnegative, detect_delimiter
 
 class CsvImporter:      # Erstellt ein Objekt
@@ -11,12 +11,12 @@ class CsvImporter:      # Erstellt ein Objekt
 
     def import_file(self, csv_path, store, mapping=None, dry_run=False):
         """
-        Importiert CSV-Einträge in den JSONL-Store.
-        mapping: dict wie {"DATE":"Datum","ITEM":"Artikel","GRAMS":"Menge","REASON":"Grund","ID":"ID"}
+        Liest eine CSV ein und hängt gültige Einträge an den Store (JSONL).
+        mapping: z.B. {"DATE":"Datum","ITEM":"Artikel","GRAMS":"Menge","REASON":"Grund","ID":"ID"}
         """
-        csv_path = os.path.expanduser(csv_path) # Interpretiert "~" als das Userverzeichnis
+
         if not os.path.exists(csv_path):
-            raise FileNotFoundError("CSV not found: %s" % csv_path)
+            raise FileNotFoundError(f"CSV not found: {csv_path}")
 
         added = 0
         skipped = 0
@@ -41,7 +41,7 @@ class CsvImporter:      # Erstellt ein Objekt
                 required = ["DATE","ITEM","GRAMS","REASON"]     # Notwendige Spalten
                 missing = [r for r in required if r not in upper]   # Speichert fehlende Spalten
                 if missing:     # Wenn Spalten fehlen
-                    raise ValueError("Missing required columns: %s. Found: %s" % (missing, headers))    # Gibt einen Fehler
+                    raise ValueError(f"Missing required columns: {missing}. Found: {headers}")    # Gibt einen Fehler
                 col = {k: upper[k] for k in required}   # Um eventuelle Extraspalten auszuschließen, wird col nur mit den geforderten Spalten erstellt
                 if "ID" in upper:   # Setzt die ID, wenn sie vorhanden ist, ansonsten wird sie später erstellt
                     col["ID"] = upper["ID"]
@@ -54,16 +54,17 @@ class CsvImporter:      # Erstellt ein Objekt
                     grams = parse_int_nonnegative(row[col["GRAMS"]])
                     reason = str(row[col["REASON"]]).strip()
 
-                    entry = Entry("TEMP_ID", d.isoformat(), item, grams, reason)    # Erstellt ein Entry Objekt
-                    entry.id = uuid4().hex      # Erstellt eine uuid als Hexadezimalstring
-                    if "ID" in col and row.get(col["ID"]):      # Wenn die ID in dem Datensatz existiert
+                    entry = new_entry(item, grams, reason, d)
+
+                    # Falls CSV eine ID-Spalte hat, übernehme sie
+                    if "ID" in col and row.get(col["ID"]):
                         entry.id = str(row[col["ID"]]).strip() or entry.id
 
                     if not dry_run:     # Wenn kein Test, also dry im Sinne von, keine Endgültige Veränderung
                         store.append(entry)     # Fügt den Datensatz als neue Zeile hinzu
                     added += 1      # Setzt den count für hinzugefügte Datensätze hoch
                 except Exception as ex:
-                    errors.append("line %d: %s" % (i, ex))      # Fügt den Error der Liste an, damit der run nicht unterbrochen wird
+                    errors.append(f"line {i}: {ex}")      # Fügt den Error der Liste an, damit der run nicht unterbrochen wird
                     skipped += 1    # Erhöht den übersprungen/fehler count
 
         return {"added": added, "skipped": skipped, "errors": errors, "db": store.path}

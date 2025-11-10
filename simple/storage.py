@@ -1,12 +1,12 @@
 # storage.py
 import os
 import json
-from models import Entry
+from models import Entry, entry_from_dict
 
-# Basis-Verzeichnis = Ordner, in dem diese Datei liegt
+# Ordner, in dem storage.py liegt
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Standard-Dateipfad für die Datenbank im selben Ordner
+# data.jsonl im selben Ordner
 DEFAULT_DB_PATH = os.path.join(BASE_DIR, "data.jsonl")
 
 
@@ -20,10 +20,12 @@ class Store:
 
         # Datei anlegen, falls sie noch nicht existiert
         if not os.path.exists(self.path):
+            # Leere Datei anlegen
             with open(self.path, "w", encoding="utf-8"):
                 pass  # leere Datei reicht für JSONL
 
     def append(self, entry: Entry):
+        """Einen Eintrag ans Ende der JSONL-Datei anhängen."""
         with open(self.path, "a", encoding="utf-8") as f:   # Schreibt appended, also am Ende der Datei
             f.write(json.dumps(entry.to_dict(), ensure_ascii=False) + "\n")     # dumps wandelt dict in json-String um
             # Schreibt in die Datei ein dump für den übergebenen Entry-Eintrag mit utf-8 und fügt einen Zeilenumbruch ein
@@ -43,7 +45,8 @@ class Store:
                 res.append(Entry.from_dict(d))
         return res
 
-    def save_all(self, entries):
+    def save_all(self, entries) -> None:
+        """Komplettliste speichern (überschreibt Datei)."""
         tmp = self.path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             for e in entries:

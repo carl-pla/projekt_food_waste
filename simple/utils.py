@@ -30,9 +30,3 @@ def detect_delimiter(sample: str) -> str:
     counts = {",": sample.count(","), ";": sample.count(";"), "\t": sample.count("\t")}     # Zählt, wie oft die typischen csv delimiter im sample vorkommen
     delim = max(counts, key=counts.get)     # Prüft, welcher Count-Wert am höchsten ist
     return delim if counts[delim] > 0 else ","      # Gibt den höchsten zurück, wenn > 0, ansonsten den Standard ","
-
-def ensure_parent(path: str) -> None:
-    # Erstellt den Ordner für den Speicherort der .jsonl Datei
-    parent = os.path.dirname(path)
-    if parent and not os.path.isdir(parent):
-        os.makedirs(parent, exist_ok=True)
