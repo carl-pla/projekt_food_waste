@@ -3,7 +3,7 @@ from datetime import datetime
 
 def gesamte_verschwendung():
     summe = 0
-    with open("data.csv", "r", newline="") as file:
+    with open("programm/data.csv", "r", newline="") as file:
         reader = csv.DictReader(file)
         for row in reader:
             try:

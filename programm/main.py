@@ -21,7 +21,7 @@ def main():
     while True:
         welche_aufgabe = input(
             "\nWillkommen beim Food Waste Tracker\n"
-            "Möchten Sie Daten auslesen oder hinzufügen? (1/2): "
+            "Möchten Sie Daten auslesen(1) oder hinzufügen(2) oder das Programm beenden(3)?: "
         )
 
         if welche_aufgabe == "1":
@@ -43,9 +43,19 @@ def main():
             elif auswahl == "b":
                 print(f"Deine Auswahl: {auswahl}\n{lebensmittel_meiste_verschwendung()}")
             elif auswahl == "c":
-                input_zeitraum_start = input("Geben Sie das Startdatum ein")
-                input_zeitraum_ende = input("Geben Sie das Enddatum ein")
-                print(f"Deine Auswahl: {auswahl}\n{zeitraum(input_zeitraum_start, input_zeitraum_ende)} gramm")
+                while True:
+                    start_datum = input("Geben Sie das Startdatum ein (yyyy-mm-dd): ")
+                    if check_date_format(start_datum):
+                        break
+                    else:
+                        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
+                while True:
+                    end_datum = input("Geben Sie das Enddatum ein (yyyy-mm-dd): ")
+                    if check_date_format(end_datum):
+                        break
+                    else:
+                        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
+                print(f"Deine Auswahl: {auswahl}\n{zeitraum(start_datum, end_datum)} gramm")
             elif auswahl == "d":
                 print(f"Deine Auswahl: {auswahl}\n{grund()}")
             
@@ -111,8 +121,19 @@ def main():
             print(f"- Menge: {menge_abfrage} g")
             print(f"- Grund: {grund_abfrage}\n")
 
+        elif welche_aufgabe == "3":
+            print("Programm wird beendet. Auf Wiedersehen!")
+            break
+
         else:
             print("Ungültige Eingabe! Bitte geben Sie '1' oder '2' ein.\n")
+
+def check_date_format(date_text):
+    try:
+        datetime.strptime(date_text, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
 
 if __name__ == "__main__":
