@@ -1,18 +1,19 @@
-
+# app.py
 import os
 from datetime import date
 from models import new_entry
-from storage import Store
+from storage import Store, DEFAULT_DB_PATH
 from analytics import Analytics
 from importer import CsvImporter
-from utils import parse_date_or_today
+from utils import parse_date_or_today  # falls noch genutzt
+
 
 class App:
     def __init__(self):
-        home = os.path.expanduser("~")
-        default_path = os.path.join(home, ".food_waste", "data.jsonl")
-        self.db_path = default_path
-        self.store = Store(self.db_path)           # JSONL only
+        # Nutze den Default-Pfad aus storage.py (data.jsonl im Code-Ordner)
+        self.store = Store(DEFAULT_DB_PATH)
+        self.db_path = self.store.path
+
         self.analytics = Analytics()
         self.importer = CsvImporter()
 
@@ -120,11 +121,18 @@ class App:
                 print(" -", e)
 
     def change_settings(self):
-        new_path = self._input_optional("Neuer DB-Pfad (leer = unverändert, aktuell: %s): " % self.db_path)
-        if new_path:
-            self.db_path = os.path.expanduser(new_path)
-            self.store = Store(self.db_path)   # JSONL only
-        print("Einstellungen aktualisiert:", self.db_path, "(Format: JSONL)")
+        new_name = self._input_optional(
+            f"Neuer Dateiname (leer = unverändert, aktuell: {os.path.basename(self.db_path)}): "
+        )
+        if new_name:
+            from storage import BASE_DIR
+            new_path = os.path.join(BASE_DIR, new_name)
+            self.store = Store(new_path)
+            self.db_path = self.store.path
+
+        print("Einstellungen aktualisiert:")
+        print(" - Speicherort:", self.db_path)
+        print(" - Verzeichnis bleibt:", os.path.dirname(self.db_path))
 
     def run(self):
         print("=== Food Waste Tracker (JSONL-only, modular) ===")

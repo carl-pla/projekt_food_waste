@@ -1,20 +1,27 @@
-
+# storage.py
 import os
 import json
 from models import Entry
-from utils import ensure_parent
+
+# Basis-Verzeichnis = Ordner, in dem diese Datei liegt
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Standard-Dateipfad für die Datenbank im selben Ordner
+DEFAULT_DB_PATH = os.path.join(BASE_DIR, "data.jsonl")
+
 
 class Store:
     """
-    JSONL-only Store. Always persists to JSON Lines (one JSON object per line).
-    CSV is supported only for IMPORT, never for persistence.
+    JSONL-Store.
+    Speichert alle Einträge in data.jsonl im selben Verzeichnis wie der Code.
     """
-    def __init__(self, path):
-        self.path = os.path.expanduser(path)
-        ensure_parent(self.path)
+    def __init__(self, path: str = DEFAULT_DB_PATH):
+        self.path = path
+
+        # Datei anlegen, falls sie noch nicht existiert
         if not os.path.exists(self.path):
-            # create empty JSONL file
-            open(self.path, "a", encoding="utf-8").close()
+            with open(self.path, "w", encoding="utf-8"):
+                pass  # leere Datei reicht für JSONL
 
     def append(self, entry: Entry):
         with open(self.path, "a", encoding="utf-8") as f:   # Schreibt appended, also am Ende der Datei
@@ -22,9 +29,11 @@ class Store:
             # Schreibt in die Datei ein dump für den übergebenen Entry-Eintrag mit utf-8 und fügt einen Zeilenumbruch ein
 
     def read_all(self):
+        """Alle Einträge aus der JSONL-Datei als Entry-Objekte laden."""
         res = []
         if not os.path.exists(self.path):
             return res
+
         with open(self.path, "r", encoding="utf-8") as f:
             for line in f:
                 s = line.strip()
