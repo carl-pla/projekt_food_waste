@@ -15,20 +15,24 @@ def parse_date_or_today(s):
             return datetime.strptime(s, f).date()
         except Exception as e:
             last_err = e
-    raise ValueError("Unsupported date format: %r (allowed: YYYY-MM-DD, DD.MM.YYYY, YYYY/MM/DD)" % s) from last_err
+    raise ValueError(f"Unsupported date format: {last_err} (allowed: YYYY-MM-DD, DD.MM.YYYY, YYYY/MM/DD)")
 
 def parse_int_nonnegative(s):
-    v = int(str(s).strip())
-    if v < 0:
-        raise ValueError("Value must be >= 0")
-    return v
+    try:
+        v = int(str(s).strip())
+        if v < 0:
+            raise ValueError("Value must be >= 0")
+        return v
+    except ValueError as e:
+        raise ValueError(f"Bitte eine ganze Zahl eingeben (aktuell: {s!r})")
 
 def detect_delimiter(sample: str) -> str:
-    counts = {",": sample.count(","), ";": sample.count(";"), "\t": sample.count("\t")}
-    delim = max(counts, key=counts.get)
-    return delim if counts[delim] > 0 else ","
+    counts = {",": sample.count(","), ";": sample.count(";"), "\t": sample.count("\t")}     # Zählt, wie oft die typischen csv delimiter im sample vorkommen
+    delim = max(counts, key=counts.get)     # Prüft, welcher Count-Wert am höchsten ist
+    return delim if counts[delim] > 0 else ","      # Gibt den höchsten zurück, wenn > 0, ansonsten den Standard ","
 
 def ensure_parent(path: str) -> None:
+    # Erstellt den Ordner für den Speicherort der .jsonl Datei
     parent = os.path.dirname(path)
     if parent and not os.path.isdir(parent):
         os.makedirs(parent, exist_ok=True)
