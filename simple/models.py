@@ -15,9 +15,13 @@ class Entry:
         self.reason = str(reason).strip()
 
     def to_dict(self):
+        # Konvertiert die Daten als Dict
         return {"ID": self.id, "DATE": self.date_iso, "ITEM": self.item, "GRAMS": self.grams, "REASON": self.reason}
 
-    @staticmethod
+    @staticmethod   # staticmethod ist nur ein Decorator, der eine Funktion in den Klassen-Namespace hängt,
+                    # ohne dass sie self/cls braucht. Sie gehört logisch zur Klasse Entry (Entry.from_dict(...)),
+                    # arbeitet aber nur mit den übergebenen Daten und nicht mit einer konkreten Entry-Instanz.
+                    # Kurz: Deklariert die Funktion als klassen unabhängige Funktion, die funktional in der Klasse existiert
     def from_dict(d: dict):
         return Entry(d["ID"], d["DATE"], d["ITEM"], int(d["GRAMS"]), d["REASON"])
 
