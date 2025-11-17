@@ -9,7 +9,7 @@ class Analytics:
         grams_by_item = {}
         for e in entries:
             grams_by_item[e.item] = grams_by_item.get(e.item, 0) + e.grams      # Erstellt einen Eintrag oder ruft den aktuellen auf, nimmt den Eintrag oder 0 und fügt die grams für den aktuellen Eintrag hinzu
-        return sorted(grams_by_item.items(), key=lambda kv: kv[1], reverse=True)[:3]
+        return sorted(grams_by_item.items(), key=lambda kv: kv[1], reverse=True)[:3]    # .items() bringt das dict als liste mit tuplen: [(key, value)]
         # Sortiert das Dict nach den Values vom Schlüssel [1] (Grams) absteigend und vom 0. bis 2. Eintrag
 
     def waste_in_period(self, entries, start_date, end_date):   # Erklärt sich von selbst
