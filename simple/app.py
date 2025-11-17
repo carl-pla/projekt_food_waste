@@ -102,6 +102,8 @@ class App:
 
     def import_csv(self):
         csvp = self._input_nonempty("CSV-Pfad: ")
+        if not os.path.exists(csvp):
+            raise FileNotFoundError(f"CSV not found: {csvp}")
         print("Optional: Spalten-Mapping angeben (ENTER = überspringen).")
         print("Zielspalten: DATE, ITEM, GRAMS, REASON, optional ID.")
         mapping = {}
