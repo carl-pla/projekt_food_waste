@@ -1,7 +1,7 @@
 # storage.py
 import os
 import json
-from models import Entry, entry_from_dict
+from models import Entry
 
 # Ordner, in dem storage.py liegt
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
