@@ -1,0 +1,205 @@
+{"ID": "4871fdb1-6ec5-474e-bf45-4dc80ad16a62", "DATE": "2025-11-17", "ITEM": "Brot", "GRAMS": 200, "REASON": "Verdorben"}
+{"ID": "61fd1380-bf4d-4619-998b-198e40aa7175", "DATE": "2025-11-17", "ITEM": "brot", "GRAMS": 300, "REASON": "Hart"}
+{"ID": "3b149692-c3da-4276-8488-aed9ffda4d6a", "DATE": "2025-11-17", "ITEM": "Milch", "GRAMS": 400, "REASON": "Verdorben"}
+{"ID": "4279b695-cd4a-44d8-b1d1-b5ce1ed88121", "DATE": "2025-11-17", "ITEM": "banaen", "GRAMS": 50, "REASON": "Fleckig"}
+{"ID": "a52ac839-d69d-4bf4-a5c0-625e77cd7431", "DATE": "2025-11-17", "ITEM": "Brot", "GRAMS": 1870, "REASON": "gzuz"}
+{"ID": "ec5e48a8-0366-4fc9-acf5-f25171b79dd5", "DATE": "2024-08-31", "ITEM": "Wurst", "GRAMS": 3210, "REASON": "Reste vom Kochen"}
+{"ID": "376e92d5-9201-4b55-8bb1-e6a41e47f6d5", "DATE": "2024-07-23", "ITEM": "Gurke", "GRAMS": 1400, "REASON": "Transport beschädigt"}
+{"ID": "74330a92-09d1-4343-a47b-0f8c1afdfde4", "DATE": "2024-07-29", "ITEM": "Kaffee", "GRAMS": 2910, "REASON": "Reste vom Kochen"}
+{"ID": "26aa34f9-7a52-475e-985b-861fff302a6b", "DATE": "2024-05-31", "ITEM": "Paprika", "GRAMS": 750, "REASON": "falsche Lagerung"}
+{"ID": "c3a64040-89b3-4e8f-af92-e016d09f3529", "DATE": "2024-10-09", "ITEM": "Saft", "GRAMS": 3380, "REASON": "Verpackung beschädigt"}
+{"ID": "10536d6a-da92-45ff-9dd5-09ca990ce60b", "DATE": "2024-02-23", "ITEM": "Apfel", "GRAMS": 1420, "REASON": "Überproduktion"}
+{"ID": "6f8148eb-d038-43c4-ac9e-b0e08e0e4daf", "DATE": "2024-09-11", "ITEM": "Eier", "GRAMS": 4420, "REASON": "Reste vom Kochen"}
+{"ID": "008c200b-bc5a-4739-adb8-772a4ca932b1", "DATE": "2024-01-12", "ITEM": "Kartoffel", "GRAMS": 4640, "REASON": "Reste vom Kochen"}
+{"ID": "e62fe878-3f44-4d0d-8aa7-07f44352a926", "DATE": "2024-09-19", "ITEM": "Kartoffel", "GRAMS": 2330, "REASON": "verdorben"}
+{"ID": "52f4b71d-e29b-464a-aa30-02fd81c84b23", "DATE": "2024-10-03", "ITEM": "Mehl", "GRAMS": 4280, "REASON": "Versehen"}
+{"ID": "d6dd7b25-e09a-4af9-bfb2-334df593bcb1", "DATE": "2024-08-04", "ITEM": "Saft", "GRAMS": 1610, "REASON": "Transport beschädigt"}
+{"ID": "bac8cb09-b660-41bf-bde4-cdc9f4358491", "DATE": "2024-08-19", "ITEM": "Saft", "GRAMS": 3320, "REASON": "Versehen"}
+{"ID": "98453df7-0168-49bd-88e7-dfc1a03c780e", "DATE": "2024-05-17", "ITEM": "Karotte", "GRAMS": 2340, "REASON": "Verpackung beschädigt"}
+{"ID": "4a66ca79-85e7-45f6-b854-fa2d20c385d0", "DATE": "2024-08-10", "ITEM": "Milch", "GRAMS": 2840, "REASON": "falsche Lagerung"}
+{"ID": "8c4e88d2-b522-40e3-9859-99f3dc0ba548", "DATE": "2024-05-22", "ITEM": "Tee", "GRAMS": 140, "REASON": "verdorben"}
+{"ID": "a9d5ed61-3d9a-4481-b929-5e049c7699f0", "DATE": "2024-01-16", "ITEM": "Reis", "GRAMS": 1770, "REASON": "Überproduktion"}
+{"ID": "652112c9-bcc5-437b-8913-1cc3bc9e93ea", "DATE": "2024-07-16", "ITEM": "Butter", "GRAMS": 3240, "REASON": "verdorben"}
+{"ID": "8c5efdba-c2dc-453b-bb9c-f796d40df3f9", "DATE": "2024-08-07", "ITEM": "Eier", "GRAMS": 3600, "REASON": "abgelaufen"}
+{"ID": "78fd1631-2414-42a8-a3cf-59f28a69e879", "DATE": "2024-09-03", "ITEM": "Sahne", "GRAMS": 4530, "REASON": "Überproduktion"}
+{"ID": "dd9f1881-5406-4f5f-b3e3-3da2f5462d1a", "DATE": "2024-04-17", "ITEM": "Zucker", "GRAMS": 4900, "REASON": "verdorben"}
+{"ID": "2abac7c4-c71e-4d3a-b781-17d9edb3c4c9", "DATE": "2024-06-05", "ITEM": "Joghurt", "GRAMS": 2390, "REASON": "verdorben"}
+{"ID": "fa6a616a-2cfb-40df-933b-4b7e9af44eb8", "DATE": "2024-06-25", "ITEM": "Banane", "GRAMS": 2100, "REASON": "Transport beschädigt"}
+{"ID": "db414336-cf5a-49c5-8b70-04f618078bd6", "DATE": "2024-06-28", "ITEM": "Wurst", "GRAMS": 1350, "REASON": "Transport beschädigt"}
+{"ID": "d05148d9-2a2d-4222-87b5-0615e0cc9a0a", "DATE": "2024-08-15", "ITEM": "Käse", "GRAMS": 2790, "REASON": "falsche Temperatur"}
+{"ID": "c3ca2380-355c-409e-92bf-522eb0277de5", "DATE": "2024-05-21", "ITEM": "Reis", "GRAMS": 4110, "REASON": "Reste vom Kochen"}
+{"ID": "eb06a0f2-85ad-4394-bbe4-862743ba3f34", "DATE": "2024-06-11", "ITEM": "Kaffee", "GRAMS": 1950, "REASON": "Transport beschädigt"}
+{"ID": "e0df3e8f-cf93-44f5-8477-f795656e8404", "DATE": "2024-06-19", "ITEM": "Gurke", "GRAMS": 970, "REASON": "Versehen"}
+{"ID": "b8a8133d-052c-4a7a-b94a-52ab2dd5ecd9", "DATE": "2024-06-23", "ITEM": "Öl", "GRAMS": 1890, "REASON": "Reste vom Kochen"}
+{"ID": "afb9a3a4-e293-4c60-90bd-f2758b7526d8", "DATE": "2024-08-08", "ITEM": "Karotte", "GRAMS": 160, "REASON": "Transport beschädigt"}
+{"ID": "ac7b11b2-20e8-4725-acee-f231584b884f", "DATE": "2024-07-27", "ITEM": "Öl", "GRAMS": 4180, "REASON": "abgelaufen"}
+{"ID": "397722bf-43de-4455-83d1-944d1547e890", "DATE": "2024-01-12", "ITEM": "Milch", "GRAMS": 2300, "REASON": "Transport beschädigt"}
+{"ID": "2e0faba0-21cd-44ef-b2f9-ed1a98e5c58d", "DATE": "2024-09-03", "ITEM": "Salat", "GRAMS": 2240, "REASON": "verdorben"}
+{"ID": "580d1649-e0ad-42dd-a285-f40f4f7ac166", "DATE": "2024-06-15", "ITEM": "Tomate", "GRAMS": 3490, "REASON": "Versehen"}
+{"ID": "c4d1a838-bd16-4b2e-a4f9-83175cb0e09e", "DATE": "2024-05-12", "ITEM": "Eier", "GRAMS": 4110, "REASON": "Überproduktion"}
+{"ID": "8f6b990a-24b3-45d0-a944-5f46c581aa71", "DATE": "2024-07-06", "ITEM": "Nudeln", "GRAMS": 2680, "REASON": "Reste vom Kochen"}
+{"ID": "3b60c312-25d7-4aba-8c2f-19a81eb15701", "DATE": "2024-01-18", "ITEM": "Kartoffel", "GRAMS": 3850, "REASON": "verdorben"}
+{"ID": "e5af2adc-73da-4325-8bd0-947e36fa7980", "DATE": "2024-09-18", "ITEM": "Fleisch", "GRAMS": 1580, "REASON": "falsche Lagerung"}
+{"ID": "d2e27074-6eac-4c19-a896-389699c11800", "DATE": "2024-10-05", "ITEM": "Fisch", "GRAMS": 900, "REASON": "Transport beschädigt"}
+{"ID": "65c3970d-1219-4f95-bc44-84e780ab2717", "DATE": "2024-04-22", "ITEM": "Paprika", "GRAMS": 4990, "REASON": "verdorben"}
+{"ID": "7b140615-6836-45fe-925c-658b7a2ec6a0", "DATE": "2024-06-14", "ITEM": "Salat", "GRAMS": 4510, "REASON": "falsche Temperatur"}
+{"ID": "8dd8415c-835c-4d91-8d1b-b477437a8ff6", "DATE": "2024-10-16", "ITEM": "Reis", "GRAMS": 4010, "REASON": "Verpackung beschädigt"}
+{"ID": "aad144a4-e8a9-46b1-bd13-6ff3102d2f1d", "DATE": "2024-01-02", "ITEM": "Tomate", "GRAMS": 4640, "REASON": "nicht verkauft"}
+{"ID": "2d501e3b-03a7-47ed-8130-a95e4ddd4189", "DATE": "2024-04-10", "ITEM": "Tee", "GRAMS": 4670, "REASON": "nicht verkauft"}
+{"ID": "823199b4-113d-45dd-998e-8177f68cb358", "DATE": "2024-03-16", "ITEM": "Fleisch", "GRAMS": 1980, "REASON": "abgelaufen"}
+{"ID": "9250f036-a416-47c0-b120-328db9a18456", "DATE": "2024-09-30", "ITEM": "Saft", "GRAMS": 3940, "REASON": "Versehen"}
+{"ID": "c61ad95d-2266-41ca-bcb8-adce01591358", "DATE": "2024-09-22", "ITEM": "Fisch", "GRAMS": 2610, "REASON": "Verpackung beschädigt"}
+{"ID": "9fed3efc-44f7-46ac-b276-5c3a587e149e", "DATE": "2024-07-04", "ITEM": "Eier", "GRAMS": 1770, "REASON": "Überproduktion"}
+{"ID": "33140fed-592d-4007-b206-83a4319c1003", "DATE": "2024-10-01", "ITEM": "Käse", "GRAMS": 3490, "REASON": "Überproduktion"}
+{"ID": "2d7a045e-bbd2-43ee-b496-e003d4241e75", "DATE": "2024-04-08", "ITEM": "Zwiebel", "GRAMS": 2680, "REASON": "Transport beschädigt"}
+{"ID": "bb068e2d-da45-46ed-aa88-94a6e4b14f95", "DATE": "2024-05-21", "ITEM": "Käse", "GRAMS": 2740, "REASON": "Reste vom Kochen"}
+{"ID": "6fa326fc-0d09-43cd-9865-08d02cfb7140", "DATE": "2024-02-05", "ITEM": "Tee", "GRAMS": 1290, "REASON": "falsche Lagerung"}
+{"ID": "5a1aaaac-b4cf-4b0f-b2fd-83555d0b4726", "DATE": "2024-10-22", "ITEM": "Wurst", "GRAMS": 1980, "REASON": "falsche Lagerung"}
+{"ID": "0819808c-1a6e-4e8a-ac01-40f001644632", "DATE": "2024-03-15", "ITEM": "Kaffee", "GRAMS": 1030, "REASON": "Überproduktion"}
+{"ID": "4af8899e-cf25-4555-ab63-bfe78893295a", "DATE": "2024-04-13", "ITEM": "Apfel", "GRAMS": 4570, "REASON": "verdorben"}
+{"ID": "c54cf6d7-069f-4968-a174-d0247420f43f", "DATE": "2024-07-08", "ITEM": "Milch", "GRAMS": 4280, "REASON": "Reste vom Kochen"}
+{"ID": "aaf0cecd-fae5-4dac-a74a-8c11483d83d6", "DATE": "2024-03-14", "ITEM": "Banane", "GRAMS": 3820, "REASON": "Reste vom Kochen"}
+{"ID": "85b13227-5cc8-4eb5-8d50-08a7b81f1f3d", "DATE": "2024-01-26", "ITEM": "Zucker", "GRAMS": 2700, "REASON": "verdorben"}
+{"ID": "68317b5a-fae7-4e21-8571-5a554e604e60", "DATE": "2024-08-20", "ITEM": "Käse", "GRAMS": 1350, "REASON": "verdorben"}
+{"ID": "bc6292c1-0e9b-4070-b8a9-3b98ff8bdc6a", "DATE": "2024-01-20", "ITEM": "Zucker", "GRAMS": 570, "REASON": "falsche Lagerung"}
+{"ID": "838b4217-2bda-4502-9028-452844a7c6cf", "DATE": "2024-05-31", "ITEM": "Joghurt", "GRAMS": 3160, "REASON": "abgelaufen"}
+{"ID": "68719a3d-2ee2-4a2b-8b10-a595600df347", "DATE": "2024-02-09", "ITEM": "Öl", "GRAMS": 4880, "REASON": "Reste vom Kochen"}
+{"ID": "43803c49-e005-4e47-aa6b-d24c7a2f604f", "DATE": "2024-06-19", "ITEM": "Eier", "GRAMS": 2090, "REASON": "Verpackung beschädigt"}
+{"ID": "03dc844d-4052-4ea8-9109-1bcaa0c0f128", "DATE": "2024-04-21", "ITEM": "Joghurt", "GRAMS": 4990, "REASON": "verdorben"}
+{"ID": "ecc8bbdd-4c8c-4c5c-8c14-d478b6e44032", "DATE": "2024-06-03", "ITEM": "Zwiebel", "GRAMS": 4300, "REASON": "nicht verkauft"}
+{"ID": "148b9a52-e405-410d-8c31-174d8af9a6db", "DATE": "2024-10-12", "ITEM": "Wurst", "GRAMS": 3190, "REASON": "Überproduktion"}
+{"ID": "3c7b07b3-f11c-4cdc-9b3a-6751f567cf79", "DATE": "2024-06-17", "ITEM": "Sahne", "GRAMS": 2690, "REASON": "verdorben"}
+{"ID": "4398c8bb-ae00-4719-830e-6dcde870be79", "DATE": "2024-06-28", "ITEM": "Zucker", "GRAMS": 3850, "REASON": "Versehen"}
+{"ID": "13474575-0e5d-4d27-bc70-bbfe0fe2fdca", "DATE": "2024-07-12", "ITEM": "Gurke", "GRAMS": 1850, "REASON": "nicht verkauft"}
+{"ID": "2504b5c6-8673-4cc0-9139-1f03cfa0b211", "DATE": "2024-04-04", "ITEM": "Milch", "GRAMS": 2530, "REASON": "Überproduktion"}
+{"ID": "36557fcb-dd24-42f4-ad48-04da0dc34334", "DATE": "2024-02-09", "ITEM": "Zwiebel", "GRAMS": 2070, "REASON": "Reste vom Kochen"}
+{"ID": "e4aed45a-3771-461a-a969-f5df96843c71", "DATE": "2024-07-13", "ITEM": "Fisch", "GRAMS": 330, "REASON": "verdorben"}
+{"ID": "e2da7957-4a62-490a-868a-85385bdff26b", "DATE": "2024-09-18", "ITEM": "Sahne", "GRAMS": 1720, "REASON": "Reste vom Kochen"}
+{"ID": "f8ad24b9-e662-4893-9618-1de7d930f800", "DATE": "2024-01-22", "ITEM": "Nudeln", "GRAMS": 1470, "REASON": "nicht verkauft"}
+{"ID": "ac79539a-ede3-487f-b9d7-d31fe81c91d3", "DATE": "2024-01-30", "ITEM": "Wurst", "GRAMS": 680, "REASON": "falsche Temperatur"}
+{"ID": "dc1479af-7015-4e90-a7b1-42132ae02224", "DATE": "2024-01-18", "ITEM": "Tomate", "GRAMS": 3080, "REASON": "falsche Temperatur"}
+{"ID": "e3a87d75-2453-4555-95e1-5ba89e5dc4e8", "DATE": "2024-06-02", "ITEM": "Reis", "GRAMS": 420, "REASON": "Überproduktion"}
+{"ID": "ba2ea194-c38c-486b-8d48-cbe6d8988901", "DATE": "2024-07-23", "ITEM": "Joghurt", "GRAMS": 2800, "REASON": "Versehen"}
+{"ID": "fa3822de-23f8-4df5-91db-4c112c20eeb7", "DATE": "2024-07-16", "ITEM": "Paprika", "GRAMS": 1900, "REASON": "Überproduktion"}
+{"ID": "632e7828-7981-4097-9c99-6f2a7616a384", "DATE": "2024-07-09", "ITEM": "Fisch", "GRAMS": 1650, "REASON": "Transport beschädigt"}
+{"ID": "1d042d4e-7a47-4dea-bce2-ec4fd55fcf3d", "DATE": "2024-07-28", "ITEM": "Joghurt", "GRAMS": 2020, "REASON": "Versehen"}
+{"ID": "64f11cf1-7305-4c92-bccc-8bf8d045c1ac", "DATE": "2024-01-07", "ITEM": "Tomate", "GRAMS": 4780, "REASON": "nicht verkauft"}
+{"ID": "6c9f3927-ef92-410c-9a0b-cddbd22d4bc9", "DATE": "2024-04-29", "ITEM": "Tee", "GRAMS": 4020, "REASON": "Überproduktion"}
+{"ID": "ffe4c5bf-60d4-4d0b-b74b-194c60b1ca5c", "DATE": "2024-01-11", "ITEM": "Mehl", "GRAMS": 3940, "REASON": "Überproduktion"}
+{"ID": "b810c904-2b7e-45cc-bb3c-ff1d56b71280", "DATE": "2024-07-10", "ITEM": "Gurke", "GRAMS": 2170, "REASON": "Versehen"}
+{"ID": "65a76c87-6c04-48f6-9935-85096e5a03bf", "DATE": "2024-08-31", "ITEM": "Reis", "GRAMS": 1960, "REASON": "verdorben"}
+{"ID": "ea5ddbc3-c309-4022-93d8-298b4bcd70a9", "DATE": "2024-06-14", "ITEM": "Saft", "GRAMS": 1520, "REASON": "Transport beschädigt"}
+{"ID": "33d64c92-e7e9-43d9-b3cb-f41e1f428514", "DATE": "2024-01-05", "ITEM": "Salat", "GRAMS": 2880, "REASON": "falsche Temperatur"}
+{"ID": "a3714d62-ae00-49f4-b508-66e242370af6", "DATE": "2024-05-26", "ITEM": "Wurst", "GRAMS": 750, "REASON": "Versehen"}
+{"ID": "a6ba3e8e-d6eb-458d-96be-5f67dd2f0ed2", "DATE": "2024-06-13", "ITEM": "Kartoffel", "GRAMS": 3040, "REASON": "nicht verkauft"}
+{"ID": "6477b4d2-085c-41df-a067-a997b21d3627", "DATE": "2024-07-08", "ITEM": "Eier", "GRAMS": 110, "REASON": "Reste vom Kochen"}
+{"ID": "04052469-4b40-4298-913e-b9988feffc6f", "DATE": "2024-02-19", "ITEM": "Eier", "GRAMS": 4230, "REASON": "Reste vom Kochen"}
+{"ID": "9fbe46fe-c5a1-46fd-98dc-5721e8805afb", "DATE": "2024-02-11", "ITEM": "Wurst", "GRAMS": 4970, "REASON": "Transport beschädigt"}
+{"ID": "ef2c7324-0fb6-4ad5-bfa3-97bb35093cf3", "DATE": "2024-10-23", "ITEM": "Brot", "GRAMS": 2380, "REASON": "verdorben"}
+{"ID": "5d0f9b8d-6d63-4032-b252-09d544ca65a1", "DATE": "2024-03-31", "ITEM": "Kaffee", "GRAMS": 4480, "REASON": "Transport beschädigt"}
+{"ID": "e82f827e-aa2f-4070-a6e2-dfd10ab5fc6b", "DATE": "2024-03-31", "ITEM": "Wasser", "GRAMS": 4470, "REASON": "Überproduktion"}
+{"ID": "78b045ec-8f7d-448f-bfa0-5b3e4b3b7ac5", "DATE": "2024-10-23", "ITEM": "Karotte", "GRAMS": 1330, "REASON": "Verpackung beschädigt"}
+{"ID": "ca975011-8df0-4bca-98a1-83e8e5cccf65", "DATE": "2024-10-13", "ITEM": "Apfel", "GRAMS": 470, "REASON": "abgelaufen"}
+{"ID": "1b7c1baf-94e5-48fd-896a-88bd0cc2e69a", "DATE": "2024-07-31", "ITEM": "Mehl", "GRAMS": 3060, "REASON": "falsche Lagerung"}
+{"ID": "9f91cd45-6147-4948-8138-6a3f61bd4c68", "DATE": "2024-07-27", "ITEM": "Käse", "GRAMS": 1360, "REASON": "Reste vom Kochen"}
+{"ID": "9bfd97b1-7a92-47d2-a29b-ab8adb0c3337", "DATE": "2024-07-08", "ITEM": "Kaffee", "GRAMS": 1690, "REASON": "abgelaufen"}
+{"ID": "b3a542fd-7007-462b-af43-1b778bbe2183", "DATE": "2024-08-31", "ITEM": "Wurst", "GRAMS": 3210, "REASON": "Reste vom Kochen"}
+{"ID": "3a0eab94-0230-40d6-94e2-ecdc4dbd7de7", "DATE": "2024-07-23", "ITEM": "Gurke", "GRAMS": 1400, "REASON": "Transport beschädigt"}
+{"ID": "03d2bacc-cc40-42f3-994c-af2be799cea6", "DATE": "2024-07-29", "ITEM": "Kaffee", "GRAMS": 2910, "REASON": "Reste vom Kochen"}
+{"ID": "f71b01b7-cf7a-40dd-b84b-1f6fe6443c12", "DATE": "2024-05-31", "ITEM": "Paprika", "GRAMS": 750, "REASON": "falsche Lagerung"}
+{"ID": "3475df1a-76cc-4c17-b043-54e5e79ab6bf", "DATE": "2024-10-09", "ITEM": "Saft", "GRAMS": 3380, "REASON": "Verpackung beschädigt"}
+{"ID": "f81250e3-b545-47d6-a714-396daedcbc94", "DATE": "2024-02-23", "ITEM": "Apfel", "GRAMS": 1420, "REASON": "Überproduktion"}
+{"ID": "56672117-c1ca-4b51-91da-0cc62ba693ae", "DATE": "2024-09-11", "ITEM": "Eier", "GRAMS": 4420, "REASON": "Reste vom Kochen"}
+{"ID": "d17183cf-8c41-4aa3-90b9-1beacec95433", "DATE": "2024-01-12", "ITEM": "Kartoffel", "GRAMS": 4640, "REASON": "Reste vom Kochen"}
+{"ID": "95a8c758-abca-488e-b8fc-2b7e6a363d79", "DATE": "2024-09-19", "ITEM": "Kartoffel", "GRAMS": 2330, "REASON": "verdorben"}
+{"ID": "87eebef8-0a36-49a0-bc61-89515d3c02d5", "DATE": "2024-10-03", "ITEM": "Mehl", "GRAMS": 4280, "REASON": "Versehen"}
+{"ID": "243fd863-d4fd-4672-971e-578096254c75", "DATE": "2024-08-04", "ITEM": "Saft", "GRAMS": 1610, "REASON": "Transport beschädigt"}
+{"ID": "30a96976-49d5-47b0-959f-e09122c6ac53", "DATE": "2024-08-19", "ITEM": "Saft", "GRAMS": 3320, "REASON": "Versehen"}
+{"ID": "a883827b-ceca-481f-963b-c42c22f0e090", "DATE": "2024-05-17", "ITEM": "Karotte", "GRAMS": 2340, "REASON": "Verpackung beschädigt"}
+{"ID": "ae7da95a-47fb-4d99-ab78-3c3606cf24f4", "DATE": "2024-08-10", "ITEM": "Milch", "GRAMS": 2840, "REASON": "falsche Lagerung"}
+{"ID": "8d389d36-0d5c-4d06-a3da-fcfb2d4188d9", "DATE": "2024-05-22", "ITEM": "Tee", "GRAMS": 140, "REASON": "verdorben"}
+{"ID": "ba50b3b8-aa02-47b7-9b72-d121b6bd79e2", "DATE": "2024-01-16", "ITEM": "Reis", "GRAMS": 1770, "REASON": "Überproduktion"}
+{"ID": "221c5b5f-66b4-4d69-9da5-a032f590fd41", "DATE": "2024-07-16", "ITEM": "Butter", "GRAMS": 3240, "REASON": "verdorben"}
+{"ID": "a6d8e9db-deaa-4bbb-8b8e-004977734d41", "DATE": "2024-08-07", "ITEM": "Eier", "GRAMS": 3600, "REASON": "abgelaufen"}
+{"ID": "a4b1670a-ab97-430f-8eb8-98402f3237a0", "DATE": "2024-09-03", "ITEM": "Sahne", "GRAMS": 4530, "REASON": "Überproduktion"}
+{"ID": "82a9654b-815a-42f7-9cff-b6b40bdef1f0", "DATE": "2024-04-17", "ITEM": "Zucker", "GRAMS": 4900, "REASON": "verdorben"}
+{"ID": "f9bb464c-d803-49f3-bc5c-a58930022911", "DATE": "2024-06-05", "ITEM": "Joghurt", "GRAMS": 2390, "REASON": "verdorben"}
+{"ID": "92bacaef-151c-47c2-b7b1-461111ff2285", "DATE": "2024-06-25", "ITEM": "Banane", "GRAMS": 2100, "REASON": "Transport beschädigt"}
+{"ID": "fd9046ba-ec31-4d59-8c5c-2252b3376c68", "DATE": "2024-06-28", "ITEM": "Wurst", "GRAMS": 1350, "REASON": "Transport beschädigt"}
+{"ID": "1c8787c9-82bc-4069-97f2-f8cba1714af1", "DATE": "2024-08-15", "ITEM": "Käse", "GRAMS": 2790, "REASON": "falsche Temperatur"}
+{"ID": "2e878451-5850-4364-afff-62cf3ae996f3", "DATE": "2024-05-21", "ITEM": "Reis", "GRAMS": 4110, "REASON": "Reste vom Kochen"}
+{"ID": "9d18f1d9-61b2-4f0f-98d0-8566225ed604", "DATE": "2024-06-11", "ITEM": "Kaffee", "GRAMS": 1950, "REASON": "Transport beschädigt"}
+{"ID": "3e37e4e1-3ac6-4d7a-8464-16d9dca68c06", "DATE": "2024-06-19", "ITEM": "Gurke", "GRAMS": 970, "REASON": "Versehen"}
+{"ID": "00d419ef-2bc0-49b3-b0c1-a95475ae7811", "DATE": "2024-06-23", "ITEM": "Öl", "GRAMS": 1890, "REASON": "Reste vom Kochen"}
+{"ID": "9eeca9dc-2cc6-4d50-be72-f5f050f0afc9", "DATE": "2024-08-08", "ITEM": "Karotte", "GRAMS": 160, "REASON": "Transport beschädigt"}
+{"ID": "8b66e103-2b54-4bff-80a4-72d947bc3f1b", "DATE": "2024-07-27", "ITEM": "Öl", "GRAMS": 4180, "REASON": "abgelaufen"}
+{"ID": "db2d0663-0224-4c18-a9b7-ee0c9fa1d1f3", "DATE": "2024-01-12", "ITEM": "Milch", "GRAMS": 2300, "REASON": "Transport beschädigt"}
+{"ID": "b86e1f3d-b255-43ee-bc0b-ffa4c16d6fa0", "DATE": "2024-09-03", "ITEM": "Salat", "GRAMS": 2240, "REASON": "verdorben"}
+{"ID": "7f83c31d-0f7e-4a8a-9b41-1f13007f05dd", "DATE": "2024-06-15", "ITEM": "Tomate", "GRAMS": 3490, "REASON": "Versehen"}
+{"ID": "f974c85c-0a4e-47eb-90cf-667163e170fc", "DATE": "2024-05-12", "ITEM": "Eier", "GRAMS": 4110, "REASON": "Überproduktion"}
+{"ID": "6e2e7393-70af-4505-9efa-f839ee7d55db", "DATE": "2024-07-06", "ITEM": "Nudeln", "GRAMS": 2680, "REASON": "Reste vom Kochen"}
+{"ID": "877e8c07-03c8-4339-98c5-beb6fd23a552", "DATE": "2024-01-18", "ITEM": "Kartoffel", "GRAMS": 3850, "REASON": "verdorben"}
+{"ID": "74c601ba-1233-4271-9540-8978de24374f", "DATE": "2024-09-18", "ITEM": "Fleisch", "GRAMS": 1580, "REASON": "falsche Lagerung"}
+{"ID": "42ad229c-0dca-40db-8e8d-a80c6768e745", "DATE": "2024-10-05", "ITEM": "Fisch", "GRAMS": 900, "REASON": "Transport beschädigt"}
+{"ID": "534129ad-3f24-43c8-995a-d2e5729d9f73", "DATE": "2024-04-22", "ITEM": "Paprika", "GRAMS": 4990, "REASON": "verdorben"}
+{"ID": "4a23487f-d9a0-41b5-883f-c4e1bfbdf8f3", "DATE": "2024-06-14", "ITEM": "Salat", "GRAMS": 4510, "REASON": "falsche Temperatur"}
+{"ID": "098801bc-7f1b-46a2-8afa-33f5873edeed", "DATE": "2024-10-16", "ITEM": "Reis", "GRAMS": 4010, "REASON": "Verpackung beschädigt"}
+{"ID": "333c02d6-8d3b-4109-b599-6bbb6434fee3", "DATE": "2024-01-02", "ITEM": "Tomate", "GRAMS": 4640, "REASON": "nicht verkauft"}
+{"ID": "d5b574e8-6382-4e06-8a88-390f6e02d290", "DATE": "2024-04-10", "ITEM": "Tee", "GRAMS": 4670, "REASON": "nicht verkauft"}
+{"ID": "199f2cec-bb8e-4026-a522-c638428822f7", "DATE": "2024-03-16", "ITEM": "Fleisch", "GRAMS": 1980, "REASON": "abgelaufen"}
+{"ID": "9f5a1a32-9ea7-4741-aa7e-ce775881bd7a", "DATE": "2024-09-30", "ITEM": "Saft", "GRAMS": 3940, "REASON": "Versehen"}
+{"ID": "ae22850f-3165-4a0a-8fa8-e409c2dfc879", "DATE": "2024-09-22", "ITEM": "Fisch", "GRAMS": 2610, "REASON": "Verpackung beschädigt"}
+{"ID": "67ad41f8-682e-43eb-91e0-c15a8e8fb4c0", "DATE": "2024-07-04", "ITEM": "Eier", "GRAMS": 1770, "REASON": "Überproduktion"}
+{"ID": "23741a59-87a3-440c-8584-8920e4a43755", "DATE": "2024-10-01", "ITEM": "Käse", "GRAMS": 3490, "REASON": "Überproduktion"}
+{"ID": "f30fc585-b12e-4eb3-9514-dadadc499f4b", "DATE": "2024-04-08", "ITEM": "Zwiebel", "GRAMS": 2680, "REASON": "Transport beschädigt"}
+{"ID": "5d70cd3a-6c44-42b8-b5e4-44f792c7e434", "DATE": "2024-05-21", "ITEM": "Käse", "GRAMS": 2740, "REASON": "Reste vom Kochen"}
+{"ID": "b8668538-c2a9-49c5-b2b6-299462660903", "DATE": "2024-02-05", "ITEM": "Tee", "GRAMS": 1290, "REASON": "falsche Lagerung"}
+{"ID": "4e6a92cf-ae84-4ee8-8f88-1479ed2a76c9", "DATE": "2024-10-22", "ITEM": "Wurst", "GRAMS": 1980, "REASON": "falsche Lagerung"}
+{"ID": "93a5c65a-95fa-4a0b-a418-feff74e23c04", "DATE": "2024-03-15", "ITEM": "Kaffee", "GRAMS": 1030, "REASON": "Überproduktion"}
+{"ID": "00362e40-a210-4431-a947-ca9f1f4337e0", "DATE": "2024-04-13", "ITEM": "Apfel", "GRAMS": 4570, "REASON": "verdorben"}
+{"ID": "be8973ef-ed5c-4eca-ab2e-a14925060cfc", "DATE": "2024-07-08", "ITEM": "Milch", "GRAMS": 4280, "REASON": "Reste vom Kochen"}
+{"ID": "3708b2e2-bbdc-43d9-8a5b-823709c8ea29", "DATE": "2024-03-14", "ITEM": "Banane", "GRAMS": 3820, "REASON": "Reste vom Kochen"}
+{"ID": "7184dc22-7ba4-4ed9-a24c-6c60846c35cb", "DATE": "2024-01-26", "ITEM": "Zucker", "GRAMS": 2700, "REASON": "verdorben"}
+{"ID": "539092d5-5beb-49b1-9f1b-1a10be76c3eb", "DATE": "2024-08-20", "ITEM": "Käse", "GRAMS": 1350, "REASON": "verdorben"}
+{"ID": "7b82f962-8e91-4b6c-8274-9626e2a3f2ec", "DATE": "2024-01-20", "ITEM": "Zucker", "GRAMS": 570, "REASON": "falsche Lagerung"}
+{"ID": "ffc1c76c-2a94-413d-bcfe-fbd75138af93", "DATE": "2024-05-31", "ITEM": "Joghurt", "GRAMS": 3160, "REASON": "abgelaufen"}
+{"ID": "5a20ca2e-51c1-4575-8584-2111f579bbb6", "DATE": "2024-02-09", "ITEM": "Öl", "GRAMS": 4880, "REASON": "Reste vom Kochen"}
+{"ID": "c8ca0bef-36cb-4aa6-a6c4-20a5c42444a3", "DATE": "2024-06-19", "ITEM": "Eier", "GRAMS": 2090, "REASON": "Verpackung beschädigt"}
+{"ID": "f46fb8e2-1eac-486d-980c-4d86be855838", "DATE": "2024-04-21", "ITEM": "Joghurt", "GRAMS": 4990, "REASON": "verdorben"}
+{"ID": "d62f57ec-02cb-4dd2-aa35-9f6c27ee985f", "DATE": "2024-06-03", "ITEM": "Zwiebel", "GRAMS": 4300, "REASON": "nicht verkauft"}
+{"ID": "25054fd5-20c4-4458-b913-52cbeddc8c20", "DATE": "2024-10-12", "ITEM": "Wurst", "GRAMS": 3190, "REASON": "Überproduktion"}
+{"ID": "71b94053-517c-4a58-9f27-925eca9b59ee", "DATE": "2024-06-17", "ITEM": "Sahne", "GRAMS": 2690, "REASON": "verdorben"}
+{"ID": "f67ed74c-5939-437e-9604-8291f5dbc54f", "DATE": "2024-06-28", "ITEM": "Zucker", "GRAMS": 3850, "REASON": "Versehen"}
+{"ID": "d4c59d0a-de5c-4e86-bb9f-caddd0517f5e", "DATE": "2024-07-12", "ITEM": "Gurke", "GRAMS": 1850, "REASON": "nicht verkauft"}
+{"ID": "85b58457-fabb-480f-b7eb-253d09a41bfb", "DATE": "2024-04-04", "ITEM": "Milch", "GRAMS": 2530, "REASON": "Überproduktion"}
+{"ID": "f616664d-421a-49f4-a9ab-9373ca4200d3", "DATE": "2024-02-09", "ITEM": "Zwiebel", "GRAMS": 2070, "REASON": "Reste vom Kochen"}
+{"ID": "58af1089-901b-4927-b159-416c794b98e0", "DATE": "2024-07-13", "ITEM": "Fisch", "GRAMS": 330, "REASON": "verdorben"}
+{"ID": "a4461c45-da35-4db7-9e71-1ac7e3262d41", "DATE": "2024-09-18", "ITEM": "Sahne", "GRAMS": 1720, "REASON": "Reste vom Kochen"}
+{"ID": "5d4f8ee4-2c50-4590-9328-4f1fc61b714b", "DATE": "2024-01-22", "ITEM": "Nudeln", "GRAMS": 1470, "REASON": "nicht verkauft"}
+{"ID": "f60c57e7-4191-4dd4-acc1-94a80874531e", "DATE": "2024-01-30", "ITEM": "Wurst", "GRAMS": 680, "REASON": "falsche Temperatur"}
+{"ID": "08b639aa-ab99-43da-9ffe-e126b0d69c26", "DATE": "2024-01-18", "ITEM": "Tomate", "GRAMS": 3080, "REASON": "falsche Temperatur"}
+{"ID": "517b8687-84f9-4487-8cdc-915e4847adae", "DATE": "2024-06-02", "ITEM": "Reis", "GRAMS": 420, "REASON": "Überproduktion"}
+{"ID": "ca573e7e-04d1-4cb1-8116-db935c4296d6", "DATE": "2024-07-23", "ITEM": "Joghurt", "GRAMS": 2800, "REASON": "Versehen"}
+{"ID": "ba8e83b8-0142-4b62-8ee9-293811333b67", "DATE": "2024-07-16", "ITEM": "Paprika", "GRAMS": 1900, "REASON": "Überproduktion"}
+{"ID": "15999606-7fca-4482-9b26-c78c008b862e", "DATE": "2024-07-09", "ITEM": "Fisch", "GRAMS": 1650, "REASON": "Transport beschädigt"}
+{"ID": "30193525-fdce-4b89-9353-8e716fcd2b61", "DATE": "2024-07-28", "ITEM": "Joghurt", "GRAMS": 2020, "REASON": "Versehen"}
+{"ID": "90ae7222-6101-47cb-92a2-8739fa4038ff", "DATE": "2024-01-07", "ITEM": "Tomate", "GRAMS": 4780, "REASON": "nicht verkauft"}
+{"ID": "250eac4b-b766-4c3a-a927-5d7ddf72a2c0", "DATE": "2024-04-29", "ITEM": "Tee", "GRAMS": 4020, "REASON": "Überproduktion"}
+{"ID": "77dbdd93-28b1-46ae-a8bf-9d9a2a90f74e", "DATE": "2024-01-11", "ITEM": "Mehl", "GRAMS": 3940, "REASON": "Überproduktion"}
+{"ID": "3f1b6e58-cb4b-4db0-8cd6-f2eff16cbc45", "DATE": "2024-07-10", "ITEM": "Gurke", "GRAMS": 2170, "REASON": "Versehen"}
+{"ID": "58b8df69-9f72-4218-8230-83d9e749b998", "DATE": "2024-08-31", "ITEM": "Reis", "GRAMS": 1960, "REASON": "verdorben"}
+{"ID": "b4af4820-3eed-4e21-885d-1c18c5c0422a", "DATE": "2024-06-14", "ITEM": "Saft", "GRAMS": 1520, "REASON": "Transport beschädigt"}
+{"ID": "ce6ac08e-e47e-4084-a67f-130dce165e69", "DATE": "2024-01-05", "ITEM": "Salat", "GRAMS": 2880, "REASON": "falsche Temperatur"}
+{"ID": "0fcb29bc-b19a-42d8-9224-15ae1e3aaa6c", "DATE": "2024-05-26", "ITEM": "Wurst", "GRAMS": 750, "REASON": "Versehen"}
+{"ID": "8578fcfb-7313-4cd6-bb6b-5761e6fe56db", "DATE": "2024-06-13", "ITEM": "Kartoffel", "GRAMS": 3040, "REASON": "nicht verkauft"}
+{"ID": "3b3fde13-c99c-4a01-abe7-99babea001c6", "DATE": "2024-07-08", "ITEM": "Eier", "GRAMS": 110, "REASON": "Reste vom Kochen"}
+{"ID": "9f654cd4-3aab-4578-9e3b-32945656a875", "DATE": "2024-02-19", "ITEM": "Eier", "GRAMS": 4230, "REASON": "Reste vom Kochen"}
+{"ID": "1887c1cc-9a8d-4d17-a6ae-7b18fbd6cb36", "DATE": "2024-02-11", "ITEM": "Wurst", "GRAMS": 4970, "REASON": "Transport beschädigt"}
+{"ID": "e3ec09c5-c672-4535-b8f5-1b023f2b7b05", "DATE": "2024-10-23", "ITEM": "Brot", "GRAMS": 2380, "REASON": "verdorben"}
+{"ID": "5b1cd305-38d9-41bd-a4a1-9671f1da3f44", "DATE": "2024-03-31", "ITEM": "Kaffee", "GRAMS": 4480, "REASON": "Transport beschädigt"}
+{"ID": "becff557-5b30-4679-9244-16d7c4801b48", "DATE": "2024-03-31", "ITEM": "Wasser", "GRAMS": 4470, "REASON": "Überproduktion"}
+{"ID": "d2dd42a9-67b9-4684-b044-6a19dff9ea23", "DATE": "2024-10-23", "ITEM": "Karotte", "GRAMS": 1330, "REASON": "Verpackung beschädigt"}
+{"ID": "b0064ccb-6817-4a54-8c49-11f1a04ad606", "DATE": "2024-10-13", "ITEM": "Apfel", "GRAMS": 470, "REASON": "abgelaufen"}
+{"ID": "bafd627e-1277-4232-9c72-7faf120fb28b", "DATE": "2024-07-31", "ITEM": "Mehl", "GRAMS": 3060, "REASON": "falsche Lagerung"}
+{"ID": "53495e81-555b-45a7-9504-2e6d28f68d84", "DATE": "2024-07-27", "ITEM": "Käse", "GRAMS": 1360, "REASON": "Reste vom Kochen"}
+{"ID": "e24a6474-9634-4404-bd8a-91180d555d0a", "DATE": "2024-07-08", "ITEM": "Kaffee", "GRAMS": 1690, "REASON": "abgelaufen"}
