@@ -44,11 +44,3 @@ class Store:
                 d = json.loads(s)   # Lädt die Zeile als json aus einem string (loads = load string)
                 res.append(entry_from_dict(d))
         return res
-
-    def save_all(self, entries) -> None:
-        """Komplettliste speichern (überschreibt Datei)."""
-        tmp = self.path + ".tmp"
-        with open(tmp, "w", encoding="utf-8") as f:
-            for e in entries:
-                f.write(json.dumps(e.to_dict(), ensure_ascii=False) + "\n")
-        os.replace(tmp, self.path)      # (src, dst)

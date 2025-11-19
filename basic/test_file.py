@@ -1,10 +1,3 @@
-"""
-Manuelle Tests für den Food Waste Tracker (JSONL-Variante)
-ohne zusätzliche Test-Bibliotheken (nur assert, Standardbibliothek).
-
-Speichern als: manual_tests.py
-Ausführen mit:  python manual_tests.py
-"""
 
 import os
 import tempfile
@@ -127,7 +120,7 @@ def test_utils_parse_int_nonnegative_and_delimiter():
 # ---------------------- Tests für storage.py ----------------------
 
 
-def test_storage_append_read_save_all():
+def test_storage_append_read():
     a = Analytics()  # wird weiter unten gebraucht, hier nur Import-Check
     del a
 
@@ -150,15 +143,6 @@ def test_storage_append_read_save_all():
         assert len(entries) == 2
         assert entries[0].item == "Brot"
         assert entries[1].item == "Milch"
-
-        # save_all überschreibt Datei vollständig
-        entries[0].grams = 999
-        store.save_all(entries)
-
-        entries2 = store.read_all()
-        assert len(entries2) == 2
-        assert entries2[0].grams == 999
-        assert entries2[1].item == "Milch"
 
 
 # ---------------------- Tests für analytics.py ----------------------
@@ -280,7 +264,7 @@ def main():
         ("models: Entry/new_entry", test_models_entry_and_factory),
         ("utils: parse_date_or_today", test_utils_parse_date_or_today),
         ("utils: parse_int_nonnegative & detect_delimiter", test_utils_parse_int_nonnegative_and_delimiter),
-        ("storage: append/read/save_all", test_storage_append_read_save_all),
+        ("storage: append/read", test_storage_append_read),
         ("analytics: Funktionen", test_analytics_functions),
         ("importer: CSV-Import & Fehlerfälle", test_importer_basic_and_errors),
     ]

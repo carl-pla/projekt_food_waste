@@ -68,7 +68,7 @@ class App:
         if not entries:
             print("Keine Einträge.")
             return
-        limit = self._input_int("Wieviele Zeilen anzeigen? (0 = alle): ", nonneg=True)
+        limit = self._input_int("Wie viele Zeilen anzeigen? (0 = alle): ", nonneg=True)
         shown = 0
         for e in entries:
             print(f"{e.id}\t{e.date_iso}\t{e.item}\t{e.grams}\t{e.reason}")

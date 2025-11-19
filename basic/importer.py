@@ -32,11 +32,11 @@ class CsvImporter:
 
         # CSV öffnen, ggf. Delimiter auto-detecten
         with open(csv_path, "r", encoding=self.encoding, newline="") as f:
-            sample = f.read(1024)
+            sample = f.read(1024)   # Ließt die ersten 1024 Zeichen zum testen ein
             if not sample:
                 raise ValueError("CSV-Datei ist leer.")
             delim = self.delimiter or detect_delimiter(sample)
-            f.seek(0)
+            f.seek(0)   # Springt wieder an den Anfang (sucht index 0)
 
             reader = csv.DictReader(f, delimiter=delim)
 

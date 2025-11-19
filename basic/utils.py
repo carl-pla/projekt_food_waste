@@ -5,7 +5,6 @@ from datetime import datetime, date
 DATE_FORMATS = ["%Y-%m-%d", "%d.%m.%Y", "%Y/%m/%d"]
 
 def parse_date_or_today(s):
-    """Return date from string (several formats). Empty/None => today()."""
     if not s or not str(s).strip():
         return datetime.today().date()
     s = str(s).strip()
