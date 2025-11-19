@@ -1,7 +1,7 @@
 # storage.py
 import os
 import json
-from models import Entry
+from models import Entry, entry_from_dict
 
 # Ordner, in dem storage.py liegt
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -42,7 +42,7 @@ class Store:
                 if not s:
                     continue
                 d = json.loads(s)   # Lädt die Zeile als json aus einem string (loads = load string)
-                res.append(Entry.from_dict(d))
+                res.append(entry_from_dict(d))
         return res
 
     def save_all(self, entries) -> None:
