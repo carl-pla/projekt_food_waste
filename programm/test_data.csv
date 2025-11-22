@@ -1,0 +1,6 @@
+lebensmittel,datum,waste,grund
+Apfel,2024-01-01,1000,Schimmel
+Brot,2024-02-01,200,Abgelaufen
+Milch,2024-03-01,300,Schimmel
+lebensmittel,datum,waste,grund
+TestLM,2024-10-10,999,TestGrund
