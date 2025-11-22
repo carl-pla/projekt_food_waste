@@ -1,0 +1,11 @@
+@Nils-Gro
+-KI Prompt nach CSV-Daten fragen 
+
+@carl-pla
+-Projekt Struktur anlegen 
+
+
+Gesamte Menge an weggeworfenen Lebensmitteln anzeigen.
+– Die drei Lebensmittel mit der gr¨ oßten weggeworfenen Menge auflisten.
+– Menge an weggeworfenen Lebensmittel in bestimmtem Zeitraum ausgeben.
+– Den h¨ aufigsten Grund f¨ ur das Wegwerfen ausgeben.
