@@ -1,8 +1,8 @@
 # =========================================================
-# Grundidee des Testprogramms: 
-# --> Code baut eine Testumgebung auf 
-# --> führt Testfunktionen basierend auf dessen Inhalten aus (sonst müssen Daten aus einer unberrechenbaren Umgebung genommen werden)
-# --> prüft Ergebnisse 
+# Grundidee des Testprogramms:
+# --> Code baut eine Testumgebung auf
+# --> führt Testfunktionen basierend auf dessen Inhalten aus
+# --> prüft Ergebnisse
 # --> stellt echte Umgebung wieder her
 
 # Gliederung: 
@@ -18,18 +18,15 @@
 
 #importieren der benötigten Module
 import os
-import csv
-from datetime import datetime
 
 # Die Funktionen aus main.py, die wir testen wollen
 from main import read_data, write_dict, write_data, check_date_format
 
 
 # =========================================================
-# Test-Datei für CSV-Operationen (orignale CSV-Datei wird nicht benutzt)
+# Test-Datei für CSV-Operationen (originale CSV-Datei wird nicht benutzt)
 # =========================================================
 
-# Name der Test-CSV-Datei
 TEST_CSV = "test_data.csv"
 
 
@@ -52,7 +49,6 @@ def test(name, func):
     except Exception as e:
         # Alle anderen Fehler = Unerwartet → Hinweis
         print(f"[FEHLER] {name}: Unerwarteter Fehler -> {e}")
-
 
 
 # =========================================================
@@ -84,7 +80,7 @@ Milch,2024-03-01,300,Schimmel
 def test_read_data():
     """
     Testet, ob read_data() korrekt aus der CSV liest
-    und das richtige Dictionary zurückgibt.
+    und die richtige Liste von Dictionaries zurückgibt.
     """
     erstelle_test_csv()
 
@@ -102,13 +98,16 @@ def test_read_data():
     # Test durchführen
     data = read_data()
 
-    # Prüfen, ob die Lebensmittel korrekt eingelesen wurden
-    assert "Apfel" in data
-    assert "Brot" in data
-    assert "Milch" in data
+    # Datenstruktur: Liste von Zeilen-Dicts
+    assert isinstance(data, list), "read_data sollte eine Liste zurückgeben"
+    assert len(data) == 3, f"Erwartet 3 Zeilen, bekommen {len(data)}"
 
-    # Prüfen, ob ein Feld korrekt übernommen wurde
-    assert data["Apfel"]["waste"] == "1000"
+    lebensmittel_namen = {row["lebensmittel"] for row in data}
+    assert lebensmittel_namen == {"Apfel", "Brot", "Milch"}
+
+    # Prüfen, ob ein Feld korrekt übernommen wurde (Apfel-waste)
+    apfel = next(row for row in data if row["lebensmittel"] == "Apfel")
+    assert apfel["waste"] == "1000"
 
     # Dateien zurücksetzen
     os.rename(original_path, test_path)
@@ -119,19 +118,20 @@ def test_read_data():
 def test_write_dict():
     """
     Testet, ob write_dict() ein korrekt formatiertes Dictionary erzeugt
+    und dieses an eine Datenliste anhängt.
     """
-    data = {}
-    appended_data = write_dict("TestLM", "2024-10-10", "999", "TestGrund", data)
+    data = []
+    row = write_dict("TestLM", "2024-10-10", "999", "TestGrund", data)
 
-    # Prüfen, ob der Eintrag im zurückgegebenen Dictionary vorhanden ist
-    assert "TestLM" in appended_data
-    assert appended_data["TestLM"]["waste"] == "999"
-    assert appended_data["TestLM"]["grund"] == "TestGrund"
+    # Rückgabewert prüfen
+    assert row["lebensmittel"] == "TestLM"
+    assert row["datum"] == "2024-10-10"
+    assert row["waste"] == "999"
+    assert row["grund"] == "TestGrund"
 
-    # Prüfen, ob der Eintrag auch ins data-Dictionary übernommen wurde
-    assert "TestLM" in data
-    assert data["TestLM"]["waste"] == "999"
-    assert data["TestLM"]["grund"] == "TestGrund"
+    # Prüfen, ob der Eintrag auch in der Datenliste ist
+    assert len(data) == 1
+    assert data[0] == row
 
 
 def test_write_data():
@@ -140,16 +140,15 @@ def test_write_data():
     """
     erstelle_test_csv()
 
-    # Dummy-Datensatz, der angehängt werden soll
-    data = {
-        "TestLM": { 
+    # Dummy-Datensatz, der angehängt werden soll (Liste mit einem Dict)
+    new_rows = [
+        {
             "lebensmittel": "TestLM",
             "datum": "2024-10-10",
             "waste": "999",
-            "grund": "TestGrund"
+            "grund": "TestGrund",
         }
-    }
-    
+    ]
 
     # Pfade ermitteln
     path = os.path.join(os.path.dirname(__file__), TEST_CSV)
@@ -163,15 +162,16 @@ def test_write_data():
     os.rename(path, original_path)
 
     # Test: neue Zeile anhängen
-    write_data(data)
-    
+    write_data(new_rows)
 
     # Datei einlesen
-    with open(original_path, "r") as f:
+    with open(original_path, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
     # Letzte Zeile überprüfen
-    assert "TestLM,2024-10-10,999,TestGrund" in lines[-1]
+    assert lines[-1] == "TestLM,2024-10-10,999,TestGrund", (
+        f"Letzte Zeile unerwartet: {lines[-1]}"
+    )
 
     # Dateien wiederherstellen
     os.rename(original_path, path)

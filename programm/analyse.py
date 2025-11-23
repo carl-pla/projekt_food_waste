@@ -1,59 +1,97 @@
 from datetime import datetime
 
+
+def _iter_rows(data):
+    """Erlaubt sowohl Listen als auch Dicts als Eingabe."""
+    if isinstance(data, dict):
+        return data.values()
+    return data
+
+
 def gesamte_verschwendung(data):
-    summe = 0
-    for row in data.values():
+    """Berechnet die gesamte Menge an weggeworfenen Lebensmitteln in Gramm."""
+    summe = 0.0
+
+    for row in _iter_rows(data):
         try:
             summe += float(row["waste"])
-        except (KeyError, ValueError):
+        except (KeyError, TypeError, ValueError):
+            # Kaputte/unkomplette Zeilen ignorieren
             continue
+
     return summe
 
-def lebensmittel_meiste_verschwendung(data):
-    aggregiert = {}
-    for row in data.values():
-        try:
-            key = row["lebensmittel"]
-            waste = float(row["waste"])
 
-            if key not in aggregiert:
-                aggregiert[key] = waste
-            else:
-                aggregiert[key] += waste
-        except (KeyError, ValueError):
+def lebensmittel_meiste_verschwendung(data):
+    """Gibt die drei Lebensmittel mit der größten weggeworfenen Menge zurück.
+
+    Rückgabe: Liste von Tupeln [(lebensmittel, gesamt_waste), ...]
+    """
+    summen_pro_lebensmittel = {}
+
+    for row in _iter_rows(data):
+        try:
+            name = row["lebensmittel"]
+            waste = float(row["waste"])
+        except (KeyError, TypeError, ValueError):
             continue
-    
-    top3 = sorted(aggregiert.items(), key = lambda x: x[1], reverse = True)[0:3]
-    return top3    
-            
+
+        if not name:
+            continue
+
+        summen_pro_lebensmittel[name] = (
+            summen_pro_lebensmittel.get(name, 0.0) + waste
+        )
+
+    return sorted(
+        summen_pro_lebensmittel.items(),
+        key=lambda x: x[1],
+        reverse=True,
+    )[:3]
+
+
 def zeitraum(eingabe_start, eingabe_ende, data):
+    """Filtert alle Datensätze, die zwischen zwei Datumsangaben liegen.
+
+    Rückgabe: Liste von Zeilen-Dicts.
+    """
     start_datum = datetime.strptime(eingabe_start, "%Y-%m-%d").date()
     ende_datum = datetime.strptime(eingabe_ende, "%Y-%m-%d").date()
-    daten_im_zeitraum = []
 
-    for row in data.values():
+    ergebnis = []
+
+    for row in _iter_rows(data):
         try:
             datum = datetime.strptime(row["datum"], "%Y-%m-%d").date()
-            if start_datum <= datum <= ende_datum:
-                daten_im_zeitraum.append(row)
-        except (KeyError, ValueError):
+        except (KeyError, TypeError, ValueError):
             continue
 
-    return daten_im_zeitraum  
+        if start_datum <= datum <= ende_datum:
+            ergebnis.append(row)
+
+    return ergebnis
+
 
 def grund(data):
-    gruende = {}
-    for row in data.values():
-        try:
-            key = row["grund"]
-            anzahl = 1
+    """Ermittelt die fünf häufigsten Gründe für das Wegwerfen.
 
-            if key not in gruende:
-                gruende[key] = anzahl
-            else:
-                gruende[key] += anzahl
-        except (KeyError, ValueError):
-                continue
-        
-        top5 = sorted(gruende.items(), key = lambda x: x[1], reverse = True)[0:5]
-    return top5
+    Rückgabe: Liste von Tupeln [(grund, anzahl), ...]
+    """
+    gruende = {}
+
+    for row in _iter_rows(data):
+        try:
+            g = row["grund"]
+        except (KeyError, TypeError):
+            continue
+
+        if not g:
+            continue
+
+        gruende[g] = gruende.get(g, 0) + 1
+
+    return sorted(
+        gruende.items(),
+        key=lambda x: x[1],
+        reverse=True,
+    )[:5]

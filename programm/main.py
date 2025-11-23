@@ -1,158 +1,244 @@
 from datetime import datetime
 import os
 import csv
-from analyse import gesamte_verschwendung, lebensmittel_meiste_verschwendung, zeitraum, grund
 
-""" 
-Programm kann in verschiedene Dateien sortiert werden, sodass es übersichtlicher bleibt
+from analyse import (
+    gesamte_verschwendung,
+    lebensmittel_meiste_verschwendung,
+    zeitraum,
+    grund,
+)
 
-"""          
-                       
-"""
--CLI-Handling (Inputs,prints)
--nicht objektorientiert
 
-"""
+# =========================
+# Datei-Funktionen
+# =========================
+
+def _data_path():
+    """Pfad zur data.csv im aktuellen Ordner."""
+    return os.path.join(os.path.dirname(__file__), "data.csv")
+
+
 def read_data():
-    data = {}
-    path = os.path.join(os.path.dirname(__file__), "data.csv")
-    with open(path, "r", newline="") as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            key = row["lebensmittel"]
-            data[key] = row
-    return data
+    """Liest die CSV-Datei ein und gibt eine Liste von Zeilen-Dicts zurück."""
+    path = _data_path()
+    rows = []
 
-def write_data(appended_data):
-    path = os.path.join(os.path.dirname(__file__), "data.csv")
-    with open (path, "a", newline="") as file:
-        fieldnames = ["lebensmittel","datum","waste","grund"]
+    if not os.path.exists(path):
+        return rows
+
+    with open(path, "r", newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            name = row.get("lebensmittel", "")
+
+            # Headerzeile(n) oder leere Namen ignorieren
+            if not name or name == "lebensmittel":
+                continue
+
+            rows.append(
+                {
+                    "lebensmittel": name,
+                    "datum": row.get("datum", ""),
+                    "waste": row.get("waste", ""),
+                    "grund": row.get("grund", ""),
+                }
+            )
+
+    return rows
+
+
+def write_data(new_rows):
+    """Hängt neue Zeilen an die CSV-Datei an.
+
+    `new_rows` ist eine Liste von Dicts mit den Keys:
+    lebensmittel, datum, waste, grund
+    """
+    path = _data_path()
+    file_exists = os.path.exists(path)
+    write_header = (not file_exists) or os.path.getsize(path) == 0
+
+    with open(path, "a", newline="", encoding="utf-8") as file:
+        fieldnames = ["lebensmittel", "datum", "waste", "grund"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
 
-        writer.writeheader()
-        for row in appended_data.values():
-            writer.writerow(row)
+        if write_header:
+            writer.writeheader()
+
+        for row in new_rows:
+            writer.writerow(
+                {
+                    "lebensmittel": row.get("lebensmittel", ""),
+                    "datum": row.get("datum", ""),
+                    "waste": row.get("waste", ""),
+                    "grund": row.get("grund", ""),
+                }
+            )
+
 
 def write_dict(lebensmittel, datum, waste, grund, data):
-    appended_data = {}
-    appended_data[lebensmittel] = {
+    """Erstellt einen neuen Datensatz, hängt ihn an `data` an und gibt ihn zurück."""
+    row = {
         "lebensmittel": lebensmittel,
-        "datum": datum,
-        "waste": waste,
-        "grund": grund
+        "datum": str(datum),
+        "waste": str(waste),
+        "grund": grund,
     }
-    data[lebensmittel] = appended_data[lebensmittel]  # füge es ins existierende data ein
-    return appended_data
+
+    data.append(row)
+    return row
 
 
 def check_date_format(date_text):
+    """Prüft, ob ein Datum im Format YYYY-MM-DD gültig ist."""
     try:
         datetime.strptime(date_text, "%Y-%m-%d")
         return True
     except ValueError:
         return False
 
-def main():
+
+# =========================
+# Eingabe-Helfer
+# =========================
+
+def _input_date(prompt_text):
     while True:
-        
-        welche_aufgabe = input(
-            "\nWillkommen beim Food Waste Tracker\n"
-            "Möchten Sie Daten auslesen (1) oder hinzufügen (2) oder das Programm beenden(3)?: "
+        date_text = input(prompt_text).strip()
+        if check_date_format(date_text):
+            return date_text
+        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
+
+
+def _input_date_today(prompt_text):
+    while True:
+        # Hinweis im Prompt ergänzen
+        date_text = input(f"{prompt_text} (leer = heutiges Datum): ").strip()
+
+        # Wenn nichts eingegeben wird → heutiges Datum verwenden
+        if not date_text:
+            today = datetime.today().date()
+            return today.strftime("%Y-%m-%d")
+
+        # Sonst wie bisher prüfen
+        if check_date_format(date_text):
+            return date_text
+
+        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
+
+
+def _input_non_empty(prompt_text):
+    while True:
+        value = input(prompt_text).strip()
+        if value:
+            return value
+        print("Eingabe darf nicht leer sein.\n")
+
+
+def _input_positive_float(prompt_text):
+    while True:
+        try:
+            value = float(input(prompt_text).strip())
+            if value <= 0:
+                raise ValueError
+            return value
+        except ValueError:
+            print("Bitte eine gültige Zahl größer als 0 eingeben.\n")
+
+
+# =========================
+# Menü-Logik
+# =========================
+
+def _menu_auslesen(data):
+    print(
+        "\nWillkommen beim Daten auslesen\n"
+        "Was möchten Sie wissen?\n"
+        "a) Gesamte Menge an weggeworfenen Lebensmitteln anzeigen\n"
+        "b) Die drei Lebensmittel mit der größten weggeworfenen Menge\n"
+        "c) Menge an weggeworfenen Lebensmitteln in einem bestimmten Zeitraum\n"
+        "d) Häufigste Gründe für das Wegwerfen\n"
+    )
+
+    auswahl = input("\nIhre Auswahl (a | b | c | d): ").lower().strip()
+
+    if auswahl not in {"a", "b", "c", "d"}:
+        print("Ungültige Auswahl. Bitte a, b, c oder d eingeben.\n")
+        return
+
+    if auswahl == "a":
+        gesamt = gesamte_verschwendung(data)
+        print(
+            f"Deine Auswahl: {auswahl}\n"
+            f"Gesamte Menge an weggeworfenen Lebensmitteln: {gesamt} g"
         )
 
+    elif auswahl == "b":
+        top3 = lebensmittel_meiste_verschwendung(data)
+        print("Deine Auswahl: b")
+        print("Die drei Lebensmittel mit der größten weggeworfenen Menge:")
+        for name, menge in top3:
+            print(f"- {name}: {menge} g")
+
+    elif auswahl == "c":
+        start_datum = _input_date("Geben Sie das Startdatum ein (yyyy-mm-dd): ")
+        end_datum = _input_date("Geben Sie das Enddatum ein (yyyy-mm-dd): ")
+
+        daten_im_zeitraum = zeitraum(start_datum, end_datum, data)
+        gesamt = gesamte_verschwendung(daten_im_zeitraum)
+
+        print("Deine Auswahl: c")
+        print(
+            f"Im Zeitraum von {start_datum} bis {end_datum} wurden insgesamt "
+            f"{gesamt} g Lebensmittel weggeworfen."
+        )
+
+    elif auswahl == "d":
+        gruende_top5 = grund(data)
+        print("Deine Auswahl: d")
+        print("Häufigste Gründe für das Wegwerfen:")
+        for reason, count in gruende_top5:
+            print(f"- {reason}: {count} mal")
+
+
+def _menu_hinzufuegen(data):
+    print("\nWillkommen, welche Daten möchten Sie hinzufügen?\n")
+
+    datum = _input_date_today("Datum (yyyy-mm-dd): ")
+    lebensmittel = _input_non_empty("Lebensmittel: ")
+    menge = _input_positive_float("Menge (in Gramm): ")
+    grund_text = _input_non_empty("Grund (Stichwort): ")
+
+    row = write_dict(lebensmittel, datum, menge, grund_text, data)
+    write_data([row])
+
+    print("\nEintrag erfolgreich hinzugefügt!")
+    print(f"- Datum: {datum}")
+    print(f"- Lebensmittel: {lebensmittel}")
+    print(f"- Menge: {menge} g")
+    print(f"- Grund: {grund_text}\n")
+
+
+def main():
+    data = read_data()
+
+    while True:
+        welche_aufgabe = input(
+            "\nWillkommen beim Food Waste Tracker\n"
+            "Möchten Sie Daten auslesen (1), hinzufügen (2) oder das Programm beenden (3)? "
+        ).strip()
+
         if welche_aufgabe == "1":
-            print(
-                "\nWillkommen beim Daten auslesen\n"
-                "Was möchten Sie wissen?\n"
-                "a) Gesamte Menge an weggeworfenen Lebensmitteln anzeigen\n"
-                "b) Die drei Lebensmittel mit der größten weggeworfenen Menge\n"
-                "c) Menge an weggeworfenen Lebensmitteln in einem bestimmten Zeitraum\n"
-                "d) Häufigster Grund für das Wegwerfen\n"
-            )
-
-            auswahl = input("\nIhre Auswahl (a | b | c | d): ").lower()
-
-            if auswahl not in ["a", "b", "c", "d"]:
-                print("Ungültige Auswahl. Bitte a, b, c oder d eingeben.\n")
-            
-            elif auswahl == "a":
-                print(f"Deine Auswahl: {auswahl}\n{gesamte_verschwendung(data)} gramm")
-            
-            elif auswahl == "b":
-                print(f"Deine Auswahl: {auswahl}\n{lebensmittel_meiste_verschwendung(data)}")
-            
-            elif auswahl == "c":
-                while True:
-                    start_datum = input("Geben Sie das Startdatum ein (yyyy-mm-dd): ")
-                    if check_date_format(start_datum):
-                        break
-                    else:
-                        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
-                while True:
-                    end_datum = input("Geben Sie das Enddatum ein (yyyy-mm-dd): ")
-                    if check_date_format(end_datum):
-                        break
-                    else:
-                        print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
-                print(f"Deine Auswahl: {auswahl}\n{zeitraum(start_datum, end_datum,data)} gramm")
-            
-            elif auswahl == "d":
-                print(f"Deine Auswahl: {auswahl}\n{grund(data)}")
-
+            _menu_auslesen(data)
         elif welche_aufgabe == "2":
-            print("\nWillkommen, welche Daten möchten Sie hinzufügen?\n")
-
-            while True:
-                datum_abfrage = input("Datum (yyyy-mm-dd): ")
-                try:
-                    datum_abfrage = datetime.strptime(datum_abfrage, "%Y-%m-%d").date()
-                    break
-                except ValueError:
-                    print("Ungültiges Datum! Bitte im Format yyyy-mm-dd eingeben.\n")
-
-            while True:
-                try:
-                    lebensmittel_abfrage = input("Lebensmittel: ").strip()
-                    if not lebensmittel_abfrage:
-                        raise ValueError("Bitte ein Lebensmittel angeben.")
-                    break
-                except ValueError:
-                    raise(ValueError)
-
-            while True:
-                try:
-                    menge_abfrage = float(input("Menge (in Gramm): "))
-                    if menge_abfrage <= 0:
-                        raise ValueError("Die Menge muss größer als 0 sein.")
-                    break
-                except ValueError:
-                    print("Bitte eine gültige Zahl größer als 0 eingeben.\n")
-
-            while True:
-                try:
-                    grund_abfrage = input("Grund (Stichwort): ").strip()
-                    if not grund_abfrage:
-                        raise ValueError("Bitte einen Grund angeben.")
-                    break
-                except ValueError:
-                    raise ValueError
-
-            write_data(write_dict(lebensmittel_abfrage,datum_abfrage,menge_abfrage,grund_abfrage))
-            print("Eintrag erfolgreich hinzugefügt!")
-
-            print("\nDaten erfolgreich aufgenommen!")
-            print(f"- Datum: {datum_abfrage}")
-            print(f"- Lebensmittel: {lebensmittel_abfrage}")
-            print(f"- Menge: {menge_abfrage} g")
-            print(f"- Grund: {grund_abfrage}\n")
-
+            _menu_hinzufuegen(data)
         elif welche_aufgabe == "3":
             print("Programm wird beendet. Auf Wiedersehen!")
             break
-
         else:
             print("Ungültige Eingabe! Bitte geben Sie '1', '2' oder '3' ein.\n")
 
+
 if __name__ == "__main__":
-    data = read_data()
     main()
