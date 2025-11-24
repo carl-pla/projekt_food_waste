@@ -194,10 +194,10 @@ def _menu_auslesen(data):
         )
 
     elif auswahl == "d":
-        gruende_top5 = grund(data)
+        haeufigste_gruende = grund(data)
         print("Deine Auswahl: d")
-        print("Häufigste Gründe für das Wegwerfen:")
-        for reason, count in gruende_top5:
+        print("Häufigster Grund/Gründe für das Wegwerfen:")
+        for reason, count in haeufigste_gruende:
             print(f"- {reason}: {count} mal")
 
 
