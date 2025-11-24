@@ -26,7 +26,6 @@ def read_data():
 
     if not os.path.exists(path):
         return rows
-
     with open(path, "r", newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
 
