@@ -81,7 +81,7 @@ def test_zeitraum():
 
 def test_grund():
     resultat = grund(DATA)
-    # Schimmel kommt 2x vor, Abgelaufen einmal
+    # Schimmel kommt 2x vor, Abgelaufen einmal, verschwunden einmal
     erwartung = [("Schimmel", 2)]
     assert resultat == erwartung, f"Erwartet {erwartung}, bekommen {resultat}"
 
