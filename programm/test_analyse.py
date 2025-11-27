@@ -31,26 +31,26 @@ DATA = [
         "lebensmittel": "Apfel",
         "datum": "2024-01-10",
         "waste": "1000",
-        "grund": "Schimmel",
+        "grund": "Schimmel"
     },
     {
         "lebensmittel": "Brot",
         "datum": "2024-02-10",
         "waste": "200",
-        "grund": "Abgelaufen",
+        "grund": "Abgelaufen"
     },
     {
         "lebensmittel": "Milch",
         "datum": "2024-03-10",
         "waste": "300",
-        "grund": "Schimmel",
+        "grund": "Schimmel"
     },
     {
         "lebensmittel": "Börek",
         "datum": "2024-04-10",
         "waste": "400",
-        "grund": "verschwunden",
-    },
+        "grund": "verschwunden"
+    }
 ]
 
 
