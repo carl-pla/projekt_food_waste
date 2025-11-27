@@ -3,7 +3,7 @@ from analyse import (
     gesamte_verschwendung,
     lebensmittel_meiste_verschwendung,
     zeitraum,
-    grund,
+    grund
 )
 
 
