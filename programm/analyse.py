@@ -3,7 +3,7 @@ from datetime import datetime
 
 def _iter_rows(data):
     """Erlaubt sowohl Listen als auch Dicts als Eingabe."""
-    if isinstance(data, dict):
+    if isinstance(data, dict): # wenn data ein dict ist, sonst wird Liste returnt
         return data.values()
     return data
 
@@ -36,17 +36,17 @@ def lebensmittel_meiste_verschwendung(data):
         except (KeyError, TypeError, ValueError):
             continue
 
-        if not name:
+        if not name: # falls kein Lebensmittelname im Zeilendict vorhanden ist, wird Eintrag (Zeile der csv) geskippt (invalider Eintrag)
             continue
 
         summen_pro_lebensmittel[name] = (
-            summen_pro_lebensmittel.get(name, 0.0) + waste
+            summen_pro_lebensmittel.get(name, 0.0) + waste # built-in: holt value des Keys name über dict.get(key, Nummer (falls dem key noch kein value zugeordnet wurde, wird geholter value zu Nummer)
         )
 
     return sorted(
-        summen_pro_lebensmittel.items(),
-        key=lambda x: x[1],
-        reverse=True,
+        summen_pro_lebensmittel.items(), # Liste der Tupelobjekte der Form (key, value) werden sortiert
+        key=lambda x: x[1], # Sortierung nach dem value der Tupel
+        reverse=True, # größte values zuerst
     )[:3]
 
 
@@ -73,11 +73,12 @@ def zeitraum(eingabe_start, eingabe_ende, data):
 
 
 def grund(data):
-    """Ermittelt die fünf häufigsten Gründe für das Wegwerfen.
+    """Ermittelt den häufigsten Grund (bei gleicher Häufigkeit mehrere Gründe) für das Wegwerfen.
 
     Rückgabe: Liste von Tupeln [(grund, anzahl), ...]
     """
     gruende = {}
+    hoechste_frequenz = 0.0
 
     for row in _iter_rows(data):
         try:
@@ -90,8 +91,17 @@ def grund(data):
 
         gruende[g] = gruende.get(g, 0) + 1
 
-    return sorted(
+    sorted_list = sorted(
         gruende.items(),
         key=lambda x: x[1],
-        reverse=True,
-    )[:5]
+        reverse=True)
+
+    haeufigster_grund_frequenz = sorted_list[0][1]
+
+    haeufigste_gruende = []
+
+    for g in sorted_list:
+        if g[1] == haeufigster_grund_frequenz:
+            haeufigste_gruende.append(g)
+
+    return haeufigste_gruende

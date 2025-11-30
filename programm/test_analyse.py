@@ -3,7 +3,7 @@ from analyse import (
     gesamte_verschwendung,
     lebensmittel_meiste_verschwendung,
     zeitraum,
-    grund,
+    grund
 )
 
 
@@ -31,20 +31,26 @@ DATA = [
         "lebensmittel": "Apfel",
         "datum": "2024-01-10",
         "waste": "1000",
-        "grund": "Schimmel",
+        "grund": "Schimmel"
     },
     {
         "lebensmittel": "Brot",
         "datum": "2024-02-10",
         "waste": "200",
-        "grund": "Abgelaufen",
+        "grund": "Abgelaufen"
     },
     {
         "lebensmittel": "Milch",
         "datum": "2024-03-10",
         "waste": "300",
-        "grund": "Schimmel",
+        "grund": "Schimmel"
     },
+    {
+        "lebensmittel": "Börek",
+        "datum": "2024-04-10",
+        "waste": "400",
+        "grund": "verschwunden"
+    }
 ]
 
 
@@ -54,14 +60,14 @@ DATA = [
 
 def test_gesamte_verschwendung():
     resultat = gesamte_verschwendung(DATA)
-    # 1000 + 200 + 300 = 1500
-    assert resultat == 1500.0, f"Erwartet 1500.0, bekommen {resultat}"
+    # 1000 + 200 + 300 + 400 = 1900
+    assert resultat == 1900.0, f"Erwartet 1900.0, bekommen {resultat}"
 
 
 def test_lebensmittel_meiste_verschwendung():
     resultat = lebensmittel_meiste_verschwendung(DATA)
-    # Sortierung: Apfel (1000), Milch (300), Brot (200)
-    erwartung = [("Apfel", 1000.0), ("Milch", 300.0), ("Brot", 200.0)]
+    # Sortierung: Apfel (1000), Börek (400) Milch (300)
+    erwartung = [("Apfel", 1000.0), ("Börek", 400.0), ("Milch", 300.0)]
     assert resultat == erwartung, f"Erwartet {erwartung}, bekommen {resultat}"
 
 
@@ -75,8 +81,8 @@ def test_zeitraum():
 
 def test_grund():
     resultat = grund(DATA)
-    # Schimmel kommt 2x vor, Abgelaufen einmal
-    erwartung = [("Schimmel", 2), ("Abgelaufen", 1)]
+    # Schimmel kommt 2x vor, Abgelaufen einmal, verschwunden einmal
+    erwartung = [("Schimmel", 2)]
     assert resultat == erwartung, f"Erwartet {erwartung}, bekommen {resultat}"
 
 
