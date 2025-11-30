@@ -1,0 +1,27 @@
+# --- Python-Bytecode & Cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- virtuelle Umgebungen ---
+.venv/
+venv/
+env/
+
+# --- Editor / IDE ---
+.idea/
+.vscode/
+
+# --- Betriebssystem-Dateien ---
+.DS_Store
+Thumbs.db
+
+# --- Logs & temporäre Dateien ---
+*.log
+*.tmp
+
+# --- Test- & Laufzeitdaten ---
+test_data.csv
+
+# Wenn ihr eure echte Laufzeit-CSV nicht versionieren wollt, entkommentieren:
+# programm/data.csv

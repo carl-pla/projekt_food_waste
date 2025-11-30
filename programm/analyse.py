@@ -73,13 +73,13 @@ def zeitraum(eingabe_start, eingabe_ende, data):
 
 
 def grund(data):
-    """Ermittelt den häufigsten Grund (bei gleicher Häufigkeit mehrere Gründe) für das Wegwerfen.
+    """Ermittelt den/die häufigsten Gründe für das Wegwerfen.
 
     Rückgabe: Liste von Tupeln [(grund, anzahl), ...]
     """
     gruende = {}
-    hoechste_frequenz = 0.0
 
+    # Gründe zählen
     for row in _iter_rows(data):
         try:
             g = row["grund"]
@@ -91,17 +91,22 @@ def grund(data):
 
         gruende[g] = gruende.get(g, 0) + 1
 
-    sorted_list = sorted(
-        gruende.items(),
-        key=lambda x: x[1],
-        reverse=True)
+    # Falls gar keine gültigen Gründe vorhanden sind
+    if not gruende:
+        return []
 
-    haeufigster_grund_frequenz = sorted_list[0][1]
+    # höchste Häufigkeit bestimmen
+    haeufigste_freq = max(gruende.values())
 
-    haeufigste_gruende = []
+    # alle Gründe mit dieser Häufigkeit einsammeln
+    haeufigste_gruende = [
+        (grund_name, freq)
+        for grund_name, freq in gruende.items()
+        if freq == haeufigste_freq
+    ]
 
-    for g in sorted_list:
-        if g[1] == haeufigster_grund_frequenz:
-            haeufigste_gruende.append(g)
+    # optional, damit die Ausgabe stabil/nett ist: alphabetisch sortieren
+    haeufigste_gruende.sort(key=lambda x: x[0])
 
     return haeufigste_gruende
+
